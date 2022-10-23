@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center">
-    <a href="#" class="rotate text-lg px-8 py-4">hover me</a>
+    <a href="#" class="rotate text-lg px-8 py-4">Rotate Hover Button</a>
   </div>
 </template>
 

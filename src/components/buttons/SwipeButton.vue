@@ -1,6 +1,6 @@
 <template>
   <a class="swipe-button px-8 py-4 border-4 border-current relative" href="#"
-    >Hover me</a
+    >Swipe button</a
   >
 </template>
 
