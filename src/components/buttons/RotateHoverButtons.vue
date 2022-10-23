@@ -1,6 +1,8 @@
 <template>
   <div class="flex items-center justify-center">
-    <a href="#" class="rotate text-lg px-8 py-4">Rotate Hover Button</a>
+    <a href="#" class="rotate px-8 py-4 border-4 border-current relative"
+      >Rotate Hover Button</a
+    >
   </div>
 </template>
 
@@ -10,7 +12,6 @@
 .rotate {
   position: relative;
   overflow: hidden;
-  border: 3px solid #ccc;
   &:before {
     content: '';
     width: 100%;
