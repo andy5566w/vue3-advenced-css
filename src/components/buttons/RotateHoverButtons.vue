@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center">
-    <a href="#" class="rotate text-lg p-14">hover me</a>
+    <a href="#" class="rotate text-lg px-8 py-4">hover me</a>
   </div>
 </template>
 
@@ -10,6 +10,7 @@
 .rotate {
   position: relative;
   overflow: hidden;
+  border: 3px solid #ccc;
   &:before {
     content: '';
     width: 100%;
