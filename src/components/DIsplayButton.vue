@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justift-center gap-4">
+  <div class="flex flex-wrap items-center justift-center gap-4">
     <RotateHoverButton />
     <SwipeButton />
     <SwipeButtonWithText />
@@ -8,6 +8,7 @@
     <GlowingButton />
     <TwoLayersSwapButton />
     <TextScaleButton />
+    <CircularSwapButton />
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import SwipeButtonWithText from './buttons/SwipeButtonWithText.vue'
 import GlowingButton from './buttons/GlowingButton.vue'
 import TwoLayersSwapButton from './buttons/TwoLayersSwapButton.vue'
 import TextScaleButton from './buttons/TextScalingButton.vue'
+import CircularSwapButton from './buttons/CircularSwapButton.vue'
 </script>
 
 <style lang="scss" scoped></style>
