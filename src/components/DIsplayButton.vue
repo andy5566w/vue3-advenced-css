@@ -6,6 +6,7 @@
     <SpreadHoverButton />
     <StrengthButton />
     <GlowingButton />
+    <TwoLayersSwapButton />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import SpreadHoverButton from './buttons/SpreadHoverButton.vue'
 import StrengthButton from './buttons/StrengthButton.vue'
 import SwipeButtonWithText from './buttons/SwipeButtonWithText.vue'
 import GlowingButton from './buttons/GlowingButton.vue'
+import TwoLayersSwapButton from './buttons/TwoLayersSwapButton.vue'
 </script>
 
 <style lang="scss" scoped></style>
