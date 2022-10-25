@@ -1,0 +1,11 @@
+<template>
+  <a
+    href="#"
+    class="rotate px-8 py-4 border-4 border-current relative transition duration-150 ease-out"
+    >Button</a
+  >
+</template>
+
+<script></script>
+
+<style scoped lang="scss"></style>
