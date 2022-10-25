@@ -4,7 +4,8 @@
     <SwipeButton />
     <SwipeButtonWithText />
     <SpreadHoverButton />
-    <StrenthButton />
+    <StrengthButton />
+    <GlowingButton />
   </div>
 </template>
 
@@ -12,8 +13,9 @@
 import RotateHoverButton from './buttons/RotateHoverButtons.vue'
 import SwipeButton from './buttons/SwipeButton.vue'
 import SpreadHoverButton from './buttons/SpreadHoverButton.vue'
-import StrenthButton from './buttons/StrengthButton.vue'
+import StrengthButton from './buttons/StrengthButton.vue'
 import SwipeButtonWithText from './buttons/SwipeButtonWithText.vue'
+import GlowingButton from './buttons/GlowingButton.vue'
 </script>
 
 <style lang="scss" scoped></style>
