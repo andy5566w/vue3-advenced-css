@@ -1,7 +1,7 @@
 <template>
   <a
     href="#"
-    class="rotate px-8 py-4 border-4 border-current relative transition duration-150 ease-out"
+    class="px-8 py-4 border-4 border-current relative transition duration-150 ease-out"
     >Button</a
   >
 </template>
