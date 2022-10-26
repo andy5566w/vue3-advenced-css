@@ -10,6 +10,7 @@
     <TextScaleButton />
     <CircularSwapButton />
     <Rotate3LayersButton />
+    <LayerSwapButton />
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import TwoLayersSwapButton from './buttons/TwoLayersSwapButton.vue'
 import TextScaleButton from './buttons/TextScalingButton.vue'
 import CircularSwapButton from './buttons/CircularSwapButton.vue'
 import Rotate3LayersButton from './buttons/Rotate3LayersButton.vue'
+import LayerSwapButton from './buttons/LayersSwapButton.vue'
 </script>
 
 <style lang="scss" scoped></style>

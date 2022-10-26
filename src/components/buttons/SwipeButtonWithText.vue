@@ -13,7 +13,6 @@
 .swipe-button {
   overflow: hidden;
   &:before {
-    display: block;
     transition: all 0.5s ease-in;
     content: attr(data-text);
     position: absolute;
