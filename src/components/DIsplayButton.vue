@@ -12,6 +12,7 @@
     <Rotate3LayersButton />
     <LayerSwapButton />
     <ThreeCircleBackgroundButton />
+    <TwoLayersButton />
   </div>
 </template>
 
@@ -28,6 +29,7 @@ import CircularSwapButton from './buttons/CircularSwapButton.vue'
 import Rotate3LayersButton from './buttons/Rotate3LayersButton.vue'
 import LayerSwapButton from './buttons/LayersSwapButton.vue'
 import ThreeCircleBackgroundButton from './buttons/ThreeCircleBackgroundButton.vue'
+import TwoLayersButton from './buttons/TwoLayersButton.vue'
 </script>
 
 <style lang="scss" scoped></style>
