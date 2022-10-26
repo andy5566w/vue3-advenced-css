@@ -14,6 +14,7 @@
     <ThreeCircleBackgroundButton />
     <TwoLayersButton />
     <SpittedButton />
+    <BorderSwapButton />
   </div>
 </template>
 
@@ -32,6 +33,7 @@ import LayerSwapButton from './buttons/LayersSwapButton.vue'
 import ThreeCircleBackgroundButton from './buttons/ThreeCircleBackgroundButton.vue'
 import TwoLayersButton from './buttons/TwoLayersButton.vue'
 import SpittedButton from './buttons/SplittedButton.vue'
+import BorderSwapButton from './buttons/BorderSwapButton.vue'
 </script>
 
 <style lang="scss" scoped></style>
