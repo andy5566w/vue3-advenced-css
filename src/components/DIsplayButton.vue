@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap items-center justift-center gap-4">
+  <div class="flex flex-wrap items-center gap-4">
     <RotateHoverButton />
     <SwipeButton />
     <SwipeButtonWithText />
@@ -18,6 +18,7 @@
     <BorderGrowingButton />
     <FirstLetterRotateButton />
     <FourBorderButton />
+    <WavyButton />
   </div>
 </template>
 
@@ -40,6 +41,7 @@ import BorderSwapButton from './buttons/BorderSwapButton.vue'
 import BorderGrowingButton from './buttons/BorderGrowingButton.vue'
 import FirstLetterRotateButton from './buttons/FirstLetterRotateButton.vue'
 import FourBorderButton from './buttons/FourBorderButton.vue'
+import WavyButton from './buttons/WavyButton.vue'
 </script>
 
 <style lang="scss" scoped></style>
