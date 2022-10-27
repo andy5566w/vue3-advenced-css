@@ -1,6 +1,6 @@
 <template>
   <a href="#" class="px-8 py-4 relative transition duration-150 ease-out"
-    >BOrder Swap Button</a
+    >Border Swap Button</a
   >
 </template>
 
