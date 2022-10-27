@@ -17,6 +17,7 @@
     <BorderSwapButton />
     <BorderGrowingButton />
     <FirstLetterRotateButton />
+    <FourBorderButton />
   </div>
 </template>
 
@@ -38,6 +39,7 @@ import SpittedButton from './buttons/SplittedButton.vue'
 import BorderSwapButton from './buttons/BorderSwapButton.vue'
 import BorderGrowingButton from './buttons/BorderGrowingButton.vue'
 import FirstLetterRotateButton from './buttons/FirstLetterRotateButton.vue'
+import FourBorderButton from './buttons/FourBorderButton.vue'
 </script>
 
 <style lang="scss" scoped></style>
