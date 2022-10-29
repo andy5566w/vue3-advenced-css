@@ -19,6 +19,7 @@
     <FirstLetterRotateButton />
     <FourBorderButton />
     <WavyButton />
+    <TwoCutsButton />
   </div>
 </template>
 
@@ -42,6 +43,7 @@ import BorderGrowingButton from './buttons/BorderGrowingButton.vue'
 import FirstLetterRotateButton from './buttons/FirstLetterRotateButton.vue'
 import FourBorderButton from './buttons/FourBorderButton.vue'
 import WavyButton from './buttons/WavyButton.vue'
+import TwoCutsButton from './buttons/TwoCutsButton.vue'
 </script>
 
 <style lang="scss" scoped></style>
