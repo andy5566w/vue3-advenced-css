@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap items-center gap-4">
+  <div class="flex flex-wrap items-center gap-8">
     <RotateHoverButton />
     <SwipeButton />
     <SwipeButtonWithText />
@@ -21,6 +21,7 @@
     <WavyButton />
     <TwoCutsButton />
     <TwoSkewButton />
+    <PulsingButton />
   </div>
 </template>
 
@@ -46,6 +47,7 @@ import FourBorderButton from './buttons/FourBorderButton.vue'
 import WavyButton from './buttons/WavyButton.vue'
 import TwoCutsButton from './buttons/TwoCutsButton.vue'
 import TwoSkewButton from './buttons/TwoSkewButton.vue'
+import PulsingButton from './buttons/PulsingButton.vue'
 </script>
 
 <style lang="scss" scoped></style>
