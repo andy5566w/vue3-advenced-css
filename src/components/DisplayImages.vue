@@ -1,9 +1,11 @@
-<template></template>
+<template>
+  <div>
+    <FadingImage />
+  </div>
+</template>
 
-<script>
-export default {
-  name: 'DisplayImages',
-}
+<script setup>
+import FadingImage from '../components/images/FadingImage.vue'
 </script>
 
 <style scoped></style>
