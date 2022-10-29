@@ -22,6 +22,7 @@
     <TwoCutsButton />
     <TwoSkewButton />
     <PulsingButton />
+    <DiagonalSwipeButton />
   </div>
 </template>
 
@@ -48,6 +49,7 @@ import WavyButton from './buttons/WavyButton.vue'
 import TwoCutsButton from './buttons/TwoCutsButton.vue'
 import TwoSkewButton from './buttons/TwoSkewButton.vue'
 import PulsingButton from './buttons/PulsingButton.vue'
+import DiagonalSwipeButton from './buttons/DiagonalSwipeButton.vue'
 </script>
 
 <style lang="scss" scoped></style>
