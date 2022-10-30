@@ -1,36 +1,22 @@
 <template>
-  <div class="imageContainer">
-    <img src="/src/assets/images/bali.jpeg" alt="tower" />
-    <div class="caption">
-      <h2 class="uppercase font-bold text-3xl">caption!</h2>
-      <p class="text-xl">You can write some review here</p>
-    </div>
+  <div class="moving-img">
+    <BaseImage
+      image-path="/src/assets/images/bali.jpeg"
+      caption="Caption!!"
+      content="Please type something..."
+    />
   </div>
 </template>
 
-<script></script>
+<script setup>
+import BaseImage from './BaseImage.vue'
+</script>
 
-<style scoped lang="scss">
-.imageContainer {
-  position: relative;
-  height: 500px;
-  overflow: hidden;
-  img {
-    height: 100%;
-    transition: all 0.5s;
-  }
-
+<style lang="scss">
+.moving-img {
   .caption {
-    position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
-    height: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    transition: all 0.5s;
     transform: translateY(100%);
   }
 
