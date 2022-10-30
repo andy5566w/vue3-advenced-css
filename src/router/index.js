@@ -10,6 +10,11 @@ const routes = [
     name: 'displayImg',
     component: () => import('../components/DisplayImages.vue'),
   },
+  {
+    path: '/menus',
+    name: 'displayManu',
+    component: () => import('../components/DisplayMenus.vue'),
+  },
 ]
 
 const router = createRouter({

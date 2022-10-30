@@ -8,6 +8,10 @@ const lists = [
     name: { name: 'displayImg' },
     text: 'display image',
   },
+  {
+    name: { name: 'displayManu' },
+    text: 'display menus',
+  },
 ]
 </script>
 
