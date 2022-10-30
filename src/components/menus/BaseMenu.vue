@@ -19,5 +19,6 @@ a {
   background-color: transparent;
   overflow: hidden;
   display: inline-block;
+  transition: all 0.5s;
 }
 </style>
