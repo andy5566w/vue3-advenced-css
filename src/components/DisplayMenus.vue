@@ -3,6 +3,7 @@
     <GrowingBorderMenu />
     <BackgroundAndBorderMenu />
     <SplittedBackgroundMenu />
+    <TwoMovingMenu />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import GrowingBorderMenu from './menus/GrowingBorderMenu.vue'
 import BackgroundAndBorderMenu from './menus/BackgroundAndBorderMenu.vue'
 import SplittedBackgroundMenu from './menus/SplittedBackgroundMenu.vue'
+import TwoMovingMenu from './menus/TwoMovingMenu.vue'
 </script>
 
 <style scoped></style>
