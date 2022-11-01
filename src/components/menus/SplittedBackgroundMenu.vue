@@ -1,4 +1,7 @@
 <template>
+  <select v-model="transitionOrigin">
+    <option v-for="list in lists" :key="list" :value="list">{{ list }}</option>
+  </select>
   <ul class="flex gap-4">
     <li>
       <a href="#">Home <span></span></a>
@@ -18,7 +21,11 @@
   </ul>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+const lists = ['top', 'bottom', 'center']
+let transitionOrigin = ref(lists[0])
+</script>
 
 <style scoped lang="scss">
 ul {
@@ -46,7 +53,8 @@ a {
     background-color: var(--split-color);
     top: 0;
     transition: all 0.3s;
-    transform: translateY(-100%);
+    transform: scaleY(0);
+    transform-origin: v-bind(transitionOrigin);
     z-index: -1;
   }
 
@@ -76,7 +84,7 @@ a {
     &:after,
     span:before,
     span:after {
-      transform: translateY(0);
+      transform: scaleY(1);
     }
 
     &:before {
