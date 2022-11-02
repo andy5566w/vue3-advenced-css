@@ -6,6 +6,7 @@
     <TwoMovingMenu />
     <BlurMenu />
     <TransitionDelayMenu />
+    <BorderAndBackground />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import SplittedBackgroundMenu from './menus/SplittedBackgroundMenu.vue'
 import TwoMovingMenu from './menus/TwoMovingMenu.vue'
 import BlurMenu from './menus/BlurMenu.vue'
 import TransitionDelayMenu from './menus/TransitionDelayMenu.vue'
+import BorderAndBackground from './menus/BorderAndBaclgroundMenu.vue'
 </script>
 
 <style scoped></style>
