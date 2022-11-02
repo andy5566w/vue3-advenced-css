@@ -7,6 +7,7 @@
     <BlurMenu />
     <TransitionDelayMenu />
     <BorderAndBackground />
+    <BorderSniper />
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import TwoMovingMenu from './menus/TwoMovingMenu.vue'
 import BlurMenu from './menus/BlurMenu.vue'
 import TransitionDelayMenu from './menus/TransitionDelayMenu.vue'
 import BorderAndBackground from './menus/BorderAndBaclgroundMenu.vue'
+import BorderSniper from './menus/BorderSpinerMenu.vue'
 </script>
 
 <style scoped></style>
