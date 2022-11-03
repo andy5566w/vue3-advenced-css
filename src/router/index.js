@@ -33,6 +33,11 @@ const routes = [
     ],
   },
   {
+    path: '/drag-and-drop',
+    name: 'drag-and-drop',
+    component: () => import('../pages/JueJinDrag.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: () => import('../pages/NotFound.vue'),
