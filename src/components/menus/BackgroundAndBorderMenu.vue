@@ -17,18 +17,18 @@ import BaseMenu from './BaseMenu.vue'
 
     &:before,
     &:after {
-      content: '';
       position: absolute;
+      opacity: 0;
+      transition: all 0.3s;
+      border: solid var(--color);
       width: 12px;
       height: 12px;
-      border: solid var(--color);
-      transition: all 0.3s;
-      opacity: 0;
+      content: '';
     }
 
     &:before {
-      left: calc(var(--move-distance) * -2);
       bottom: calc(var(--move-distance) * -2);
+      left: calc(var(--move-distance) * -2);
       border-width: 0 0 3px 3px;
     }
     &:after {
@@ -38,18 +38,18 @@ import BaseMenu from './BaseMenu.vue'
     }
 
     &:hover {
-      color: white;
       background-color: var(--color);
+      color: white;
       &:before {
-        opacity: 1;
-        left: calc(var(--move-distance) * -1);
         bottom: calc(var(--move-distance) * -1);
+        left: calc(var(--move-distance) * -1);
+        opacity: 1;
       }
 
       &:after {
-        opacity: 1;
         top: calc(var(--move-distance) * -1);
         right: calc(var(--move-distance) * -1);
+        opacity: 1;
       }
     }
   }

@@ -14,15 +14,15 @@
 ul {
   --delay: 0.2s;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 200px;
 
   li {
-    font-size: 100px;
-    font-weight: bold;
-    letter-spacing: 10px;
     transition: 0.5s;
+    font-weight: bold;
+    font-size: 100px;
+    letter-spacing: 10px;
   }
 
   //li:nth-child(1) {
@@ -59,8 +59,8 @@ ul {
   &:hover {
     li {
       transform: rotate(45deg) translateY(-100px);
-      filter: blur(20px);
       opacity: 0;
+      filter: blur(20px);
     }
   }
 }

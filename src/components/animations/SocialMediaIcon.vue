@@ -33,12 +33,12 @@ import {
 <style lang="scss" scoped>
 a {
   display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  box-shadow: 10px 5px 10px black;
   border-radius: 15px;
   background-color: #fff;
   padding: 1rem;
-  box-shadow: 10px 5px 10px black;
-  position: relative;
-  transition: 0.5s;
   overflow: hidden;
 
   .icon {
@@ -46,14 +46,14 @@ a {
     z-index: 2;
   }
   &:before {
-    content: '';
     position: absolute;
-    left: -100%;
     top: 130%;
+    left: -100%;
+    transform: rotate(45deg);
+    background-color: #535bf2;
     width: 150%;
     height: 150%;
-    background-color: #535bf2;
-    transform: rotate(45deg);
+    content: '';
   }
 
   &:hover {
@@ -68,18 +68,18 @@ a {
 
 @keyframes moving {
   0% {
-    left: -100%;
     top: 130%;
+    left: -100%;
   }
 
   50% {
-    left: 5%;
     top: -40%;
+    left: 5%;
   }
 
   100% {
-    left: -20%;
     top: -20%;
+    left: -20%;
   }
 }
 </style>

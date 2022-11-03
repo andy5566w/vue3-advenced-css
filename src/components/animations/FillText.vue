@@ -6,22 +6,22 @@
 
 <style scoped lang="scss">
 h1 {
+  position: relative;
+  color: #fff;
   font-weight: bold;
   font-size: 5rem;
   text-transform: uppercase;
-  position: relative;
-  color: #fff;
 
   &:before {
-    content: attr(data-text);
     position: absolute;
     top: 0;
     left: 0;
+    transition: 0.5s;
     width: 0;
     height: 100%;
-    color: #535bf2;
     overflow: hidden;
-    transition: 0.5s;
+    content: attr(data-text);
+    color: #535bf2;
   }
 
   &:hover {
