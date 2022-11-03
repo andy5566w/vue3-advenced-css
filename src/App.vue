@@ -12,6 +12,10 @@ const lists = [
     name: { name: 'displayManu' },
     text: 'display menus',
   },
+  {
+    name: { name: 'displaySpecialAnimation' },
+    text: 'display special animation',
+  },
 ]
 </script>
 

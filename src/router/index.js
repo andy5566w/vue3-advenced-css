@@ -15,6 +15,11 @@ const routes = [
     name: 'displayManu',
     component: () => import('../components/DisplayMenus.vue'),
   },
+  {
+    path: '/specialAnimation',
+    name: 'displaySpecialAnimation',
+    component: () => import('../components/DisplaySpecialAnimation.vue'),
+  },
 ]
 
 const router = createRouter({
