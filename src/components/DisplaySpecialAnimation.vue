@@ -1,9 +1,11 @@
-<template></template>
+<template>
+  <div class="flex flex-col items-center">
+    <SmokeText />
+  </div>
+</template>
 
-<script>
-export default {
-  name: 'DisplaySpecialAnimation',
-}
+<script setup>
+import SmokeText from './animations/SmokeText.vue'
 </script>
 
 <style scoped></style>
