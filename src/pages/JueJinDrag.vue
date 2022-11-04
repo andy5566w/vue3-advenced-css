@@ -13,7 +13,6 @@
         :class="className"
         :src="src"
         :key="src"
-        draggable="true"
       />
     </div>
     <div id="content">
@@ -77,6 +76,7 @@ let initial = ref({})
 let refSlide = ref(null)
 let refList = ref(null)
 
+//---------- Methods --------------------
 const handleMouseDown = (e) => {
   e.preventDefault()
   if (e.target.classList.contains('item')) {
@@ -85,8 +85,7 @@ const handleMouseDown = (e) => {
     cloneEl.value = e.target.cloneNode(true)
     cloneEl.value.classList.add('flutter')
     const { clientX, clientY, offsetX, offsetY } = e
-    initial.value = { offsetX, offsetY }
-    console.table({ clientX, clientY, offsetX, offsetY })
+    initial.value = { offsetX, offsetY, clientX, clientY }
     refList.value.appendChild(cloneEl.value)
     isDragging.value = true
   }
@@ -94,7 +93,6 @@ const handleMouseDown = (e) => {
 
 const changeCloneStyle = (arr) => {
   const original = cloneEl.value.style.cssText.split(';')
-  console.log(original.concat(arr).join(';') + ';')
   cloneEl.value.style.cssText = original.concat(arr).join(';') + ';'
 }
 
@@ -113,14 +111,41 @@ const handleWindowMouseMove = (e) => {
   }
 }
 
+const reverseCloneToOriginalPosition = () => {
+  isDragging.value = false
+  if (!cloneEl.value) return
+  cloneEl.value.classList.add('is_return')
+  const { offsetX, offsetY, clientX, clientY } = initial.value
+  changeCloneStyle([
+    `left: ${clientX - offsetX}px`,
+    `top: ${clientY - offsetY}px`,
+  ])
+
+  const animationDuration = 300
+  setTimeout(() => {
+    if (!cloneEl.value) return
+    cloneEl.value.remove()
+    cloneEl.value = null
+  }, animationDuration)
+}
+
+const handleMouseOutOfWindow = (e) => {
+  const from = e.relatedTarget || e.toElement
+  if (!from || from.nodeName === 'HTML') {
+    reverseCloneToOriginalPosition()
+  }
+}
+
 onMounted(() => {
   window.addEventListener('mouseup', handleWindowMouseUp)
   window.addEventListener('mousemove', handleWindowMouseMove)
+  document.addEventListener('mouseout', handleMouseOutOfWindow)
 })
 
 onUnmounted(() => {
   window.removeEventListener('mouseup', handleWindowMouseUp)
   window.removeEventListener('mousemove', handleWindowMouseMove)
+  document.removeEventListener('mouseout', handleMouseOutOfWindow)
 })
 </script>
 
@@ -130,6 +155,10 @@ onUnmounted(() => {
 }
 .hide {
   opacity: 0;
+}
+
+.is_return {
+  transition: all 0.3s;
 }
 
 .flutter {
