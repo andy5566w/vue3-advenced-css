@@ -22,6 +22,7 @@
 </template>
 
 <script setup>
+import { getTwoPointDistance } from '../js/canvasHelper.js'
 import { ref, onMounted, onUnmounted } from 'vue'
 const images = [
   {
@@ -85,10 +86,20 @@ const handleMouseDown = (e) => {
 
     cloneEl.value = e.target.cloneNode(true)
     cloneEl.value.classList.add('flutter')
-    const { clientX, clientY, offsetX, offsetY } = e
-    initial.value = { offsetX, offsetY, clientX, clientY }
+    const {
+      clientX,
+      clientY,
+      offsetX,
+      offsetY,
+      target: { clientWidth },
+    } = e
+    initial.value = { offsetX, offsetY, clientX, clientY, clientWidth }
     refList.value.appendChild(cloneEl.value)
     isDragging.value = true
+    changeCloneStyle([
+      `left: ${clientX - offsetX}px`,
+      `top: ${clientY - offsetY}px`,
+    ])
   }
 }
 
@@ -110,7 +121,7 @@ const handleContentMouseUp = (e) => {
   clone.classList.remove('flutter')
   clone.style.cssText = `left: ${offsetX - initial.value.offsetX}px; top:${
     offsetY - initial.value.offsetY
-  }px;`
+  }px; transform: scale(${initial.value.scale});`
   refContent.value.appendChild(clone)
   cloneEl.value.remove()
   cloneEl.value = null
@@ -119,9 +130,24 @@ const handleContentMouseUp = (e) => {
 const handleWindowMouseMove = (e) => {
   const { clientX, clientY } = e
   if (isDragging.value) {
+    const distance =
+      getTwoPointDistance(
+        {
+          x: initial.value.clientX,
+          y: initial.value.clientY,
+        },
+        {
+          x: clientX,
+          y: clientY,
+        }
+      ) / 4
+    const { clientWidth } = initial.value
+    const scale = (clientWidth + distance) / clientWidth
+    initial.value.scale = scale
     changeCloneStyle([
       `left: ${clientX - initial.value.offsetX}px`,
       `top: ${clientY - initial.value.offsetY}px`,
+      `transform: scale(${scale})`,
     ])
   }
 }
@@ -219,7 +245,7 @@ onUnmounted(() => {
   height: 100%;
   .item {
     position: absolute;
-    transform-origin: top left;
+    //transform-origin: top left;
   }
   img {
     width: 120px;
