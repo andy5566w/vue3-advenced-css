@@ -15,7 +15,7 @@
         :key="src"
       />
     </div>
-    <div id="content">
+    <div id="content" ref="refContent" @mouseup="handleContentMouseUp">
       <span id="tip" class="font-bold uppercase">drag image to here</span>
     </div>
   </div>
@@ -75,6 +75,7 @@ let cloneEl = ref(null)
 let initial = ref({})
 let refSlide = ref(null)
 let refList = ref(null)
+let refContent = ref(null)
 
 //---------- Methods --------------------
 const handleMouseDown = (e) => {
@@ -99,6 +100,20 @@ const changeCloneStyle = (arr) => {
 const handleWindowMouseUp = () => {
   refSlide.value.classList.remove('active')
   isDragging.value = false
+  reverseCloneToOriginalPosition()
+}
+
+const handleContentMouseUp = (e) => {
+  if (!cloneEl.value) return
+  const { offsetX, offsetY } = e
+  const clone = cloneEl.value.cloneNode(true)
+  clone.classList.remove('flutter')
+  clone.style.cssText = `left: ${offsetX - initial.value.offsetX}px; top:${
+    offsetY - initial.value.offsetY
+  }px;`
+  refContent.value.appendChild(clone)
+  cloneEl.value.remove()
+  cloneEl.value = null
 }
 
 const handleWindowMouseMove = (e) => {
@@ -205,6 +220,9 @@ onUnmounted(() => {
   .item {
     position: absolute;
     transform-origin: top left;
+  }
+  img {
+    width: 120px;
   }
 }
 #tip {
