@@ -57,6 +57,7 @@ a {
   }
 
   &:hover {
+    background-color: #535bf2;
     .icon {
       color: #fff;
     }
