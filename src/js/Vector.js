@@ -1,25 +1,50 @@
-const getRadianAndAngle = (startPoint, endPoint) => {
-  const { x: x1, y: y1 } = startPoint
-  const { x: x2, y: y2 } = endPoint
-  // y1 - y2 because coordinates base on four dimension
-  const delta = { x: x2 - x1, y: y1 - y2 }
-  const radian = Math.atan2(delta.y, delta.x)
-  const _ang = (radian * 180) / Math.PI
-  const angle = _ang < -90 ? 360 + _ang : _ang
-  return { radian, angle }
-}
-
-const checkDimension = (radian) => {
-  let dimension = -1
-  console.log('radian: ', radian)
-  if (0 < radian && radian <= Math.PI / 2) {
-    dimension = 1
-  } else if (Math.PI / 2 < radian && radian <= Math.PI) {
-    dimension = 2
-  } else if (-Math.PI < radian && radian <= -Math.PI / 2) {
-    dimension = 3
-  } else if (-Math.PI / 2 < radian && radian <= 0) {
-    dimension = 4
+export class Vector {
+  constructor(x, y) {
+    this.x = x
+    this.y = y
   }
-  return dimension
+
+  add(v = { x: 0, y: 0 }) {
+    return new Vector(this.x + v.x, this.y + v.y)
+  }
+
+  sub(v = { x: 0, y: 0 }) {
+    return new Vector(this.x - v.x, this.y - v.y)
+  }
+
+  multiple(s) {
+    return new Vector(this.x * s, this.y * s)
+  }
+
+  length() {
+    return Math.sqrt(this.x * this.x + this.y * this.y)
+  }
+
+  set(x, y) {
+    this.x = x
+    this.y = y
+    return this
+  }
+
+  move(x, y) {
+    this.x = x
+    this.y = y
+    return this
+  }
+
+  equal(v) {
+    return this.x === v.x && this.y === v.y
+  }
+
+  toString() {
+    return `(${this.x}, ${this.y})`
+  }
+
+  angle() {
+    return Math.atan2(this.y, this.x)
+  }
+
+  clone() {
+    return new Vector(this.x, this.y)
+  }
 }
