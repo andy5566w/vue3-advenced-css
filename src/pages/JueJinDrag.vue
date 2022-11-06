@@ -119,6 +119,9 @@ const handleContentMouseUp = (e) => {
   const { offsetX, offsetY } = e
   const clone = cloneEl.value.cloneNode(true)
   clone.classList.remove('flutter')
+  const imagePath = new URL(cloneEl.value.src)
+  imagePath.searchParams.set('w', '400')
+  clone.src = imagePath.href
   clone.style.cssText = `left: ${offsetX - initial.value.offsetX}px; top:${
     offsetY - initial.value.offsetY
   }px; transform: scale(${initial.value.scale});`
