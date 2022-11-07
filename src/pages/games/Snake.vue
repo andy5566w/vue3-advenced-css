@@ -23,12 +23,36 @@ const snake = {
   maxLength: 5,
   head: new Vector(0, 0),
   speed: new Vector(1, 0),
-  direction: 'Right',
+  direction: 'right',
   update() {
     const newHead = this.head.add(this.speed)
-    console.log('???', newHead)
     this.body.push(this.head)
+    // maybe while
+    if (this.body.length > this.maxLength) {
+      this.body.shift()
+    }
     this.head = newHead
+  },
+  setDirection(direction = 'right') {
+    let speed
+    switch (direction.toLowerCase()) {
+      case 'right':
+        speed = new Vector(1, 0)
+        break
+      case 'left':
+        speed = new Vector(-1, 0)
+        break
+      case 'up':
+        speed = new Vector(0, 1)
+        break
+      case 'down':
+        speed = new Vector(0, -1)
+    }
+    if (!speed) {
+      console.log(`direction (${direction}) is invalid`)
+      return
+    }
+    this.speed = speed
   },
 }
 const getPosition = (x, y) => {
@@ -50,18 +74,28 @@ const drawBlock = (vector, color) => {
 const render = () => {
   ctx.fillStyle = config.value.bgColor
   ctx.fillRect(0, 0, refCanvas.value.width, refCanvas.value.height)
+  const drawSnake = () => {
+    snake.body.forEach((v) => {
+      drawBlock(v, 'rgba(255,255,255,0.5)')
+    })
+  }
   for (let i = 0; i < config.value.gameWidth; i++) {
     for (let a = 0; a < config.value.gameWidth; a++) {
       drawBlock(new Vector(i, a), config.value.boxColor)
     }
   }
 
-  snake.body.forEach((v) => {
-    drawBlock(v, 'red')
-  })
+  drawSnake()
   window.requestAnimationFrame(() => {
     render()
   })
+}
+
+const update = () => {
+  setTimeout(() => {
+    update()
+    snake.update()
+  }, 300)
 }
 
 onMounted(() => {
@@ -70,9 +104,7 @@ onMounted(() => {
     config.value.boxGap * (config.value.boxWidth - 1)
   ctx = refCanvas.value.getContext('2d')
   render()
-  setInterval(() => {
-    snake.update()
-  }, 500)
+  update()
 })
 </script>
 
