@@ -4,7 +4,7 @@
 
 <script setup>
 import { Vector } from '../../js/Vector.js'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 const config = ref({
   boxWidth: 12,
@@ -43,10 +43,10 @@ const snake = {
         speed = new Vector(-1, 0)
         break
       case 'up':
-        speed = new Vector(0, 1)
+        speed = new Vector(0, -1)
         break
       case 'down':
-        speed = new Vector(0, -1)
+        speed = new Vector(0, 1)
     }
     if (!speed) {
       console.log(`direction (${direction}) is invalid`)
@@ -98,13 +98,26 @@ const update = () => {
   }, 300)
 }
 
+const handleWindowKeyDown = (e) => {
+  e.preventDefault()
+  const { key } = e
+  snake.setDirection(key.replace('Arrow', ''))
+}
+
 onMounted(() => {
+  window.addEventListener('keydown', handleWindowKeyDown)
   refCanvas.value.width = refCanvas.value.height =
     config.value.gameWidth * config.value.boxWidth +
     config.value.boxGap * (config.value.boxWidth - 1)
   ctx = refCanvas.value.getContext('2d')
-  render()
-  update()
+  nextTick(() => {
+    render()
+    update()
+  })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleWindowKeyDown)
 })
 </script>
 
