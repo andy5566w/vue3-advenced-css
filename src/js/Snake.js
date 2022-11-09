@@ -36,6 +36,10 @@ class Snake {
       console.log(`direction (${direction}) is invalid`)
       return
     }
+    if (speed.multiple(-1).equal(this.speed)) {
+      console.warn(`can't set direction as opposite`)
+      return
+    }
     this.speed = speed
   }
 }
