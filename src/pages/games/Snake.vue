@@ -1,4 +1,7 @@
 <template>
+  <div class="score">
+    Your current scores: {{ config.scores !== -1 ? config.scores : 0 }}
+  </div>
   <div class="relative">
     <div class="panel bg-zinc-700/60" v-if="!config.isGameStart">
       <p class="text-lg font-bold mb-4 text-stone-300">{{ startMessages }}</p>
@@ -131,7 +134,6 @@ const update = () => {
 }
 
 const handleWindowKeyDown = (e) => {
-  e.preventDefault()
   const { key } = e
   snake.setDirection(key.replace('Arrow', ''))
 }
