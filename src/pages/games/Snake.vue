@@ -4,6 +4,7 @@
 
 <script setup>
 import { Vector } from '../../js/Vector.js'
+import Snake from '../../js/Snake.js'
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 const config = ref({
@@ -19,43 +20,7 @@ const config = ref({
 })
 const refCanvas = ref(null)
 let ctx = null
-const snake = {
-  body: [],
-  maxLength: 5,
-  head: new Vector(0, 0),
-  speed: new Vector(1, 0),
-  direction: 'right',
-  update() {
-    const newHead = this.head.add(this.speed)
-    this.body.push(this.head)
-    // maybe while
-    if (this.body.length > this.maxLength) {
-      this.body.shift()
-    }
-    this.head = newHead
-  },
-  setDirection(direction = 'right') {
-    let speed
-    switch (direction.toLowerCase()) {
-      case 'right':
-        speed = new Vector(1, 0)
-        break
-      case 'left':
-        speed = new Vector(-1, 0)
-        break
-      case 'up':
-        speed = new Vector(0, -1)
-        break
-      case 'down':
-        speed = new Vector(0, 1)
-    }
-    if (!speed) {
-      console.log(`direction (${direction}) is invalid`)
-      return
-    }
-    this.speed = speed
-  },
-}
+const snake = new Snake()
 const getPosition = (x, y) => {
   return new Vector(
     x * config.value.boxWidth + (x - 1) * config.value.boxGap,
@@ -131,7 +96,7 @@ const render = () => {
 }
 
 const update = () => {
-  if (config.value.isGameStart) {
+  if (!config.value.isGameStart) {
     snake.update()
     config.value.foods.forEach((f, i) => {
       if (snake.head.equal(f)) {
