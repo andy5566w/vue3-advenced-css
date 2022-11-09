@@ -13,8 +13,9 @@ const config = ref({
   boxGap: 2,
   gameWidth: 40,
   speed: 3,
-  snake: null,
   foods: [],
+  timer: -1,
+  isGameStart: false,
 })
 const refCanvas = ref(null)
 let ctx = null
@@ -90,7 +91,19 @@ const generateFood = () => {
   }
   config.value.foods.push(foodVector)
 }
+
+const judgeSnakeAlive = () => {
+  let isOutBoundary =
+    snake.head.x >= config.value.gameWidth ||
+    snake.head.x < 0 ||
+    snake.head.y >= config.value.gameWidth ||
+    snake.head.y < 0
+  let isCrashBody = snake.body.some((b) => b.equal(snake.head))
+  config.value.isGameStart = isOutBoundary || isCrashBody
+}
+
 const render = () => {
+  if (!refCanvas.value) return
   ctx.fillStyle = config.value.bgColor
   ctx.fillRect(0, 0, refCanvas.value.width, refCanvas.value.height)
   const drawSnake = () => {
@@ -118,15 +131,18 @@ const render = () => {
 }
 
 const update = () => {
-  snake.update()
-  config.value.foods.forEach((f, i) => {
-    if (snake.head.equal(f)) {
-      snake.maxLength++
-      config.value.foods.splice(i, 1)
-      generateFood()
-    }
-  })
-  setTimeout(() => {
+  if (config.value.isGameStart) {
+    snake.update()
+    config.value.foods.forEach((f, i) => {
+      if (snake.head.equal(f)) {
+        snake.maxLength++
+        config.value.foods.splice(i, 1)
+        generateFood()
+      }
+    })
+    judgeSnakeAlive()
+  }
+  config.value.timer = setTimeout(() => {
     update()
   }, 150)
 }
@@ -152,6 +168,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleWindowKeyDown)
+  clearTimeout(config.value.timer)
 })
 </script>
 
