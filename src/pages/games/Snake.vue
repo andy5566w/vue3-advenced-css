@@ -71,6 +71,25 @@ const drawBlock = (vector, color) => {
     config.value.boxWidth
   )
 }
+
+const generateFood = () => {
+  const foodVector = new Vector(
+    Math.floor(Math.random() * config.value.gameWidth),
+    Math.floor(Math.random() * config.value.gameWidth)
+  )
+  let isDuplicated = false
+  for (let i = 0; i < snake.body.length; i++) {
+    if (snake.body[i].equal(foodVector)) {
+      isDuplicated = true
+      break
+    }
+  }
+  if (isDuplicated) {
+    generateFood()
+    return
+  }
+  config.value.foods.push(foodVector)
+}
 const render = () => {
   ctx.fillStyle = config.value.bgColor
   ctx.fillRect(0, 0, refCanvas.value.width, refCanvas.value.height)
@@ -79,6 +98,12 @@ const render = () => {
       drawBlock(v, 'rgba(255,255,255,0.5)')
     })
   }
+  const drawFood = () => {
+    config.value.foods.forEach((f) => {
+      drawBlock(f, 'red')
+    })
+  }
+
   for (let i = 0; i < config.value.gameWidth; i++) {
     for (let a = 0; a < config.value.gameWidth; a++) {
       drawBlock(new Vector(i, a), config.value.boxColor)
@@ -86,16 +111,24 @@ const render = () => {
   }
 
   drawSnake()
+  drawFood()
   window.requestAnimationFrame(() => {
     render()
   })
 }
 
 const update = () => {
+  snake.update()
+  config.value.foods.forEach((f, i) => {
+    if (snake.head.equal(f)) {
+      snake.maxLength++
+      config.value.foods.splice(i, 1)
+      generateFood()
+    }
+  })
   setTimeout(() => {
     update()
-    snake.update()
-  }, 300)
+  }, 150)
 }
 
 const handleWindowKeyDown = (e) => {
@@ -108,9 +141,10 @@ onMounted(() => {
   window.addEventListener('keydown', handleWindowKeyDown)
   refCanvas.value.width = refCanvas.value.height =
     config.value.gameWidth * config.value.boxWidth +
-    config.value.boxGap * (config.value.boxWidth - 1)
+    config.value.boxGap * (config.value.gameWidth - 1)
   ctx = refCanvas.value.getContext('2d')
   nextTick(() => {
+    generateFood()
     render()
     update()
   })
