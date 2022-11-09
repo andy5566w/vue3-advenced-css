@@ -32,6 +32,7 @@ const config = ref({
   timer: -1,
   isGameStart: false,
   scores: -1,
+  updateTime: 1200,
 })
 const refCanvas = ref(null)
 let ctx = null
@@ -130,7 +131,7 @@ const update = () => {
   }
   config.value.timer = setTimeout(() => {
     update()
-  }, 50)
+  }, config.value.updateTime / snake.maxLength)
 }
 
 const handleWindowKeyDown = (e) => {
