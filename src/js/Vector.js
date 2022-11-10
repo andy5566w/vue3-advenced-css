@@ -39,8 +39,8 @@ export class Vector {
   }
 
   move(x, y) {
-    this.x = x
-    this.y = y
+    this.x += x
+    this.y += y
     return this
   }
 
