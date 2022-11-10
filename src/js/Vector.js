@@ -1,7 +1,7 @@
 export class Vector {
   constructor(x, y) {
-    this.x = x
-    this.y = y
+    this.x = x || 0
+    this.y = y || 0
   }
 
   add(v = { x: 0, y: 0 }) {
