@@ -16,8 +16,20 @@ export class Vector {
     return new Vector(this.x * s, this.y * s)
   }
 
-  length() {
+  get length() {
     return Math.sqrt(this.x * this.x + this.y * this.y)
+  }
+
+  set length(nv) {
+    const temp = this.unit.mul(nv)
+    this.set(temp.x, temp.y)
+  }
+
+  get angle() {
+    return Math.atan2(this.y, this.x)
+  }
+  get unit() {
+    return this.mul(1 / this.length)
   }
 
   set(x, y) {
@@ -38,10 +50,6 @@ export class Vector {
 
   toString() {
     return `(${this.x}, ${this.y})`
-  }
-
-  angle() {
-    return Math.atan2(this.y, this.x)
   }
 
   clone() {
