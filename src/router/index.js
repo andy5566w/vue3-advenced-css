@@ -43,6 +43,11 @@ const routes = [
     component: () => import('../pages/games/Snake.vue'),
   },
   {
+    path: '/particle',
+    name: 'particle',
+    component: () => import('../pages/particles/Display.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: () => import('../pages/NotFound.vue'),
