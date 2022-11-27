@@ -52,6 +52,11 @@ const routes = [
     name: 'NotFound',
     component: () => import('../pages/NotFound.vue'),
   },
+  {
+    path: '/cut-off-article',
+    name: 'cutOffArticle',
+    component: () => import('../components/article/ExtendArticle.vue'),
+  },
 ]
 
 const router = createRouter({
