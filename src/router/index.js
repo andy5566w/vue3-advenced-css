@@ -30,6 +30,11 @@ const routes = [
         name: 'displaySpecialAnimation',
         component: () => import('../components/DisplaySpecialAnimation.vue'),
       },
+      {
+        path: 'AnimationKey',
+        name: 'displayAnimationKey',
+        component: () => import('../components/DisplayAnimationKey.vue'),
+      },
     ],
   },
   {

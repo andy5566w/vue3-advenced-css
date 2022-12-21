@@ -29,6 +29,10 @@ const lists = [
     name: { name: 'displaySpecialAnimation' },
     text: 'display special animation',
   },
+  {
+    name: { name: 'displayAnimationKey' },
+    text: 'display animation key',
+  },
 ]
 </script>
 
