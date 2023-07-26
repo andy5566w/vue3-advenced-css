@@ -62,6 +62,11 @@ const routes = [
     name: 'cutOffArticle',
     component: () => import('../components/article/ExtendArticle.vue'),
   },
+  {
+    path: '/polar-coordinate',
+    name: 'polarCoordinate',
+    component: () => import('../pages/canvas/PolarCoordinate.vue'),
+  },
 ]
 
 const router = createRouter({
