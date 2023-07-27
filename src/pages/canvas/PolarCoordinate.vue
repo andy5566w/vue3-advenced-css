@@ -3,19 +3,19 @@
 </template>
 
 <script setup>
-import { onMounted, ref, getCurrentInstance } from 'vue'
+import { onMounted, ref } from 'vue'
 import { Vector } from '../../js/Vector'
 const refCanvas = ref(null)
-const instance = getCurrentInstance()
-console.log(instance)
 let ctx = null,
   ww,
   wh,
   centerV,
-  testVector
+  mouseVector
 const canvasConfig = ref({
   ctx: null,
 })
+
+const degToPi = Math.PI / 180
 
 const drawCross = () => {
   if (!ctx) return
@@ -37,9 +37,11 @@ const clearCanvas = () => {
 const render = () => {
   clearCanvas()
   drawCross()
-  drawCircle(centerV)
-  if (testVector) {
-    drawLine(centerV, testVector)
+  if (mouseVector) {
+    drawLine(centerV, mouseVector)
+    drawCircle(mouseVector)
+    drawAngle(mouseVector)
+    drawRadius(mouseVector)
   }
   window.requestAnimationFrame(() => {
     render()
@@ -48,17 +50,36 @@ const render = () => {
 
 const handleMouseMove = (event) => {
   const { offsetX, offsetY } = event
-  const mouseVector = new Vector(offsetX, offsetY).sub(centerV)
-  testVector = new Vector(offsetX, offsetY)
+  mouseVector = new Vector(offsetX, offsetY)
 }
 
 const drawCircle = (v) => {
+  const delta = v.sub(centerV)
   ctx.save()
-  ctx.translate(v.x, v.y)
   ctx.beginPath()
-  ctx.arc(0, 0, 100, 0, Math.PI * 2)
+  ctx.arc(centerV.x, centerV.y, delta.length, 0, Math.PI * 2)
   ctx.strokeStyle = 'red'
   ctx.stroke()
+  ctx.restore()
+}
+
+const drawRadius = (v) => {
+  const delta = v.sub(centerV)
+  ctx.save()
+  ctx.translate(centerV.x, centerV.y)
+  ctx.beginPath()
+  ctx.fillStyle = '#fff'
+  ctx.fillText(`R: ${delta.length}`, delta.x + 10, delta.y + 10)
+  ctx.restore()
+}
+
+const drawAngle = (v) => {
+  const delta = v.sub(centerV)
+  ctx.save()
+  ctx.translate(centerV.x, centerV.y)
+  ctx.beginPath()
+  ctx.fillStyle = '#fff'
+  ctx.fillText(`${parseInt(delta.angle / degToPi)} 度`, 10, -10)
   ctx.restore()
 }
 
