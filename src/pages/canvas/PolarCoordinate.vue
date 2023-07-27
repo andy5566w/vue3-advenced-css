@@ -1,13 +1,18 @@
 <template>
-  <canvas ref="refCanvas" />
+  <canvas ref="refCanvas" class="canvas" @mousemove="handleMouseMove"></canvas>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, getCurrentInstance } from 'vue'
+import { Vector } from '../../js/Vector'
 const refCanvas = ref(null)
+const instance = getCurrentInstance()
+console.log(instance)
 let ctx = null,
   ww,
-  wh
+  wh,
+  centerV,
+  testVector
 const canvasConfig = ref({
   ctx: null,
 })
@@ -32,17 +37,54 @@ const clearCanvas = () => {
 const render = () => {
   clearCanvas()
   drawCross()
+  drawCircle(centerV)
+  if (testVector) {
+    drawLine(centerV, testVector)
+  }
   window.requestAnimationFrame(() => {
     render()
   })
 }
 
+const handleMouseMove = (event) => {
+  const { offsetX, offsetY } = event
+  const mouseVector = new Vector(offsetX, offsetY).sub(centerV)
+  testVector = new Vector(offsetX, offsetY)
+}
+
+const drawCircle = (v) => {
+  ctx.save()
+  ctx.translate(v.x, v.y)
+  ctx.beginPath()
+  ctx.arc(0, 0, 100, 0, Math.PI * 2)
+  ctx.strokeStyle = 'red'
+  ctx.stroke()
+  ctx.restore()
+}
+
+const drawLine = (startPoint, endPoint) => {
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(startPoint.x, startPoint.y)
+  ctx.rotate(endPoint.angle)
+  ctx.lineTo(endPoint.length, 0)
+  ctx.stroke()
+  ctx.restore()
+}
+
 onMounted(() => {
-  refCanvas.value.width = ww = window.innerWidth
-  refCanvas.value.height = wh = window.innerHeight
+  refCanvas.value.width = ww = 700
+  refCanvas.value.height = wh = 500
+  centerV = new Vector(ww / 2, wh / 2)
   ctx = refCanvas.value.getContext('2d')
   render()
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.canvas {
+  border: 1px solid red;
+  width: 100%;
+  height: 100%;
+}
+</style>
