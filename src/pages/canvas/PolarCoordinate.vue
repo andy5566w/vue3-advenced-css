@@ -42,6 +42,7 @@ const render = () => {
     drawCircle(mouseVector)
     drawAngle(mouseVector)
     drawRadius(mouseVector)
+    drawFanArea(mouseVector)
   }
   window.requestAnimationFrame(() => {
     render()
@@ -51,6 +52,21 @@ const render = () => {
 const handleMouseMove = (event) => {
   const { offsetX, offsetY } = event
   mouseVector = new Vector(offsetX, offsetY)
+}
+
+const drawFanArea = (v) => {
+  const delta = v.sub(centerV)
+  ctx.save()
+  ctx.beginPath()
+  ctx.translate(centerV.x, centerV.y)
+  ctx.moveTo(0, 0)
+  ctx.rotate(delta.angle - 10 * degToPi)
+  ctx.lineTo(delta.length, 0)
+  ctx.rotate(20 * degToPi)
+  ctx.lineTo(delta.length, 0)
+  ctx.fillStyle = '#ccc'
+  ctx.fill()
+  ctx.restore()
 }
 
 const drawCircle = (v) => {
