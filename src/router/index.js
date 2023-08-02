@@ -67,6 +67,11 @@ const routes = [
     name: 'polarCoordinate',
     component: () => import('../pages/canvas/PolarCoordinate.vue'),
   },
+  {
+    path: '/turials',
+    name: 'Turials',
+    component: ()=>import('../pages/turials/Turials.vue')
+  }
 ]
 
 const router = createRouter({
