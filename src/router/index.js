@@ -70,8 +70,13 @@ const routes = [
   {
     path: '/turials',
     name: 'Turials',
-    component: ()=>import('../pages/turials/Turials.vue')
-  }
+    component: () => import('../pages/turials/Turials.vue'),
+  },
+  {
+    path: '/scroll-animation',
+    name: 'scroll-animation',
+    component: () => import('../pages/scroll-animation/ScrollAnimation.vue'),
+  },
 ]
 
 const router = createRouter({
