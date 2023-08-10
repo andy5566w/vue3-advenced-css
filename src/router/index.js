@@ -70,8 +70,13 @@ const routes = [
   {
     path: '/turials',
     name: 'Turials',
-    component: ()=>import('../pages/turials/Turials.vue')
-  }
+    component: () => import('../pages/turials/Turials.vue'),
+  },
+  {
+    path: '/audio',
+    name: 'Audio',
+    component: () => import('../pages/audio/Audio.vue'),
+  },
 ]
 
 const router = createRouter({
