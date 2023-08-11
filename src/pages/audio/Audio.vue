@@ -39,6 +39,9 @@ const buildWhiteNoiseBuffer = (seconds = 10) => {
 }
 
 const buildWhiteNoise = () => {
+  if (primaryGainControl.value.gain.value === 0) {
+    changeVolume(Number(volume.value) * 0.01)
+  }
   const whiteNoiseSource = audioContentext.createBufferSource()
   whiteNoiseSource.connect(primaryGainControl.value)
   whiteNoiseSource.buffer = buildWhiteNoiseBuffer()
@@ -62,7 +65,6 @@ const handlePinkNoise = () => {
   pinkNoiseSource.connect(primaryGainControl.value)
   pinkNoiseSource.start()
   pinkNoiseSource.stop(audioContentext.currentTime + 5)
-  changeVolume(Number(volume.value) * 0.01)
 }
 
 onMounted(() => {
