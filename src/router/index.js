@@ -77,6 +77,10 @@ const routes = [
     name: 'Audio',
     component: () => import('../pages/audio/Audio.vue'),
   },
+    path: '/scroll-animation',
+    name: 'scroll-animation',
+    component: () => import('../pages/scroll-animation/ScrollAnimation.vue'),
+  },
 ]
 
 const router = createRouter({
