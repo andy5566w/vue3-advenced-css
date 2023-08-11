@@ -73,6 +73,10 @@ const routes = [
     component: () => import('../pages/turials/Turials.vue'),
   },
   {
+    path: '/audio',
+    name: 'Audio',
+    component: () => import('../pages/audio/Audio.vue'),
+  },
     path: '/scroll-animation',
     name: 'scroll-animation',
     component: () => import('../pages/scroll-animation/ScrollAnimation.vue'),
