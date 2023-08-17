@@ -6,11 +6,19 @@
 import { onMounted, ref } from 'vue'
 import { Vector } from '../../js/Vector'
 const refCanvas = ref(null)
+const enemies = ref([
+  { r: 105, angle: 45 },
+  { r: 80, angle: 80 },
+  { r: 20, angle: -145 },
+  { r: 120, angle: 100 },
+  { r: 100, angle: -30 },
+])
 let ctx = null,
   ww,
   wh,
   centerV,
-  mouseVector
+  mouseVector,
+  mouseDelta
 const canvasConfig = ref({
   ctx: null,
 })
@@ -43,6 +51,7 @@ const render = () => {
     drawAngle(mouseVector)
     drawRadius(mouseVector)
     drawFanArea(mouseVector)
+    drawEnemy()
   }
   window.requestAnimationFrame(() => {
     render()
@@ -52,6 +61,7 @@ const render = () => {
 const handleMouseMove = (event) => {
   const { offsetX, offsetY } = event
   mouseVector = new Vector(offsetX, offsetY)
+  mouseDelta = mouseVector.sub(centerV)
 }
 
 const drawFanArea = (v) => {
@@ -106,6 +116,29 @@ const drawLine = (startPoint, endPoint) => {
   ctx.rotate(endPoint.angle)
   ctx.lineTo(endPoint.length, 0)
   ctx.stroke()
+  ctx.restore()
+}
+
+const drawEnemy = () => {
+  ctx.save()
+  ctx.translate(centerV.x, centerV.y)
+  enemies.value.forEach(({ r, angle }) => {
+    ctx.save()
+    ctx.beginPath()
+    ctx.rotate(angle * degToPi)
+    ctx.translate(r, 0)
+    ctx.arc(0, 0, 5, 0, Math.PI * 2)
+    let color = 'white'
+    const isInRange =
+      Math.abs(angle * degToPi - mouseDelta.angle) <= 10 * degToPi
+    const isOverHeight = mouseDelta.length > r
+    if (isInRange && isOverHeight) {
+      color = 'yellow'
+    }
+    ctx.fillStyle = color
+    ctx.fill()
+    ctx.restore()
+  })
   ctx.restore()
 }
 
