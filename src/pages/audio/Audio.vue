@@ -8,11 +8,13 @@
     <button @click="handlePinkNoise" class="mx-2">pink noise</button>
   </div>
   <audio-note />
+  <reader-wav />
 </template>
 
 <script setup>
 import { onMounted, ref, watch } from 'vue'
 import AudioNote from './AudioNote.vue'
+import ReaderWav from './ReaderWav.vue'
 const audioContentext = new AudioContext()
 const whiteNoiseSource = ref(null)
 const primaryGainControl = ref(null)
