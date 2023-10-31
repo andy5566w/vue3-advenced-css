@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import duyi from './routes/duyi.js'
+
 const routes = [
+  ...duyi,
   {
     path: '/',
     redirect: () => ({
