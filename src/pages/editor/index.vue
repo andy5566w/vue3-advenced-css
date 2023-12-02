@@ -10,5 +10,6 @@ import MultiEditor from '@/components/eidtor/MultiEditor.vue'
 
 <style scoped lang="scss">
 .layout {
+  width: 700px;
 }
 </style>

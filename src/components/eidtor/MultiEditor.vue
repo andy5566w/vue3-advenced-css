@@ -4,7 +4,8 @@
       <EditorVideo :src="src" />
     </div>
     <div class="MultiEditor__controls">
-      <ZoomTimeline />
+      <!--      <ZoomTimeline />-->
+      <ZoomVideoClipItem :start-time="0" :end-time="editor.videoDuration" />
     </div>
   </div>
 </template>
@@ -13,8 +14,12 @@
 import { ref } from 'vue'
 import EditorVideo from './fragments/EditorVideo.vue'
 import ZoomTimeline from './fragments/ZoomTimeline.vue'
+import ZoomVideoClipItem from './fragments/ZoomVideoClipItem.vue'
 import videoUrl from '@/assets/videos/cat-birthday.mp4'
+import { useEditor } from '../../store/editor.js'
+
 const src = ref(videoUrl)
+const editor = useEditor()
 </script>
 
 <style scoped lang="scss">
@@ -23,6 +28,7 @@ const src = ref(videoUrl)
   flex-direction: column;
 
   &__video {
+    margin: 0 auto;
     max-width: 800px;
   }
 
