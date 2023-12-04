@@ -10,7 +10,7 @@ import WaterMark from './WaterMark.vue'
 
 <style scoped lang="scss">
 .example {
-  //background-color: #fff;f
+  //background-color: #fff;
   width: 500px;
   height: 400px;
 }
