@@ -85,6 +85,11 @@ const routes = [
     name: 'scroll-animation',
     component: () => import('../pages/scroll-animation/ScrollAnimation.vue'),
   },
+  {
+    path: '/css-practice',
+    name: 'css-practice',
+    component: () => import('../pages/css-practice/index.vue'),
+  },
 ]
 
 const router = createRouter({
