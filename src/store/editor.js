@@ -2,8 +2,10 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
 const UNITS = [
+  { width: 80, time: 10, unit: '5 second' },
+  { width: 100, time: 10, unit: '10 second' },
   { width: 100, time: 5, unit: '5 second' },
-  { width: 150, time: 1, unit: '1 second' },
+  { width: 80, time: 1, unit: '1 second' },
   { width: 100, time: 1, unit: '1 second' },
 ]
 
@@ -24,6 +26,10 @@ export const useEditor = defineStore('editor', () => {
   const changeVideoDuration = (duration) => {
     videoDuration.value = duration
   }
+
+  const changeCurrentUnitIndex = (index) => {
+    currentUnitIndex.value = index
+  }
   return {
     currentTime,
     units,
@@ -31,5 +37,6 @@ export const useEditor = defineStore('editor', () => {
     videoDuration,
     changeCurrentTime,
     changeVideoDuration,
+    changeCurrentUnitIndex,
   }
 })

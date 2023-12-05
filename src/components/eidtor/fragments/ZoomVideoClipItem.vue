@@ -12,7 +12,6 @@ const props = defineProps({
 })
 
 const zoomItemStyles = computed(() => {
-  console.log('??', convertTimeIntoWidth(props.endTime - props.startTime))
   return {
     width: convertTimeIntoWidth(props.endTime - props.startTime) + 'px',
   }

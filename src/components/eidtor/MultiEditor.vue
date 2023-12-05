@@ -5,7 +5,10 @@
     </div>
     <div class="MultiEditor__controls">
       <!--      <ZoomTimeline />-->
-      <ZoomVideoClipItem :start-time="0" :end-time="editor.videoDuration" />
+      <EditorControls :max="editor.units.length - 1" />
+      <div class="track-body">
+        <ZoomVideoClipItem :start-time="0" :end-time="editor.videoDuration" />
+      </div>
     </div>
   </div>
 </template>
@@ -13,6 +16,7 @@
 <script setup>
 import { ref } from 'vue'
 import EditorVideo from './fragments/EditorVideo.vue'
+import EditorControls from './fragments/EditorControls.vue'
 import ZoomTimeline from './fragments/ZoomTimeline.vue'
 import ZoomVideoClipItem from './fragments/ZoomVideoClipItem.vue'
 import videoUrl from '@/assets/videos/cat-birthday.mp4'
@@ -34,6 +38,10 @@ const editor = useEditor()
 
   &__controls {
     height: 150px;
+  }
+
+  .track-body {
+    overflow: auto;
   }
 }
 </style>
