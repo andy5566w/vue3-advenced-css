@@ -16,6 +16,12 @@ const duyi = [
         props: true,
         component: () => import('../../components/duyi/watermark/index.vue'),
       },
+      {
+        path: 'show-folder',
+        name: 'show-folder',
+        component: () =>
+          import('@/components/duyi/showDirectionFolder/OpenFolder.vue'),
+      },
     ],
   },
 ]
