@@ -7,6 +7,7 @@ const UNITS = [
   { width: 100, time: 5, unit: '5 second' },
   { width: 80, time: 1, unit: '1 second' },
   { width: 100, time: 1, unit: '1 second' },
+  { width: 120, time: 1, unit: '1 second' },
 ]
 
 export const useEditor = defineStore('editor', () => {
@@ -14,9 +15,14 @@ export const useEditor = defineStore('editor', () => {
   const currentUnitIndex = ref(0)
   const units = ref(UNITS)
   const videoDuration = ref(0)
+  const scrollLeft = ref(0)
 
   const currentUnit = computed(() => {
     return units.value[currentUnitIndex.value]
+  })
+
+  const deltaDistance = computed(() => {
+    return scrollLeft.value % currentUnit.value.width
   })
 
   const changeCurrentTime = (time) => {
@@ -30,13 +36,21 @@ export const useEditor = defineStore('editor', () => {
   const changeCurrentUnitIndex = (index) => {
     currentUnitIndex.value = index
   }
+
+  const changeScrollLeft = (width) => {
+    scrollLeft.value = width
+  }
+
   return {
     currentTime,
     units,
     currentUnit,
     videoDuration,
+    scrollLeft,
+    deltaDistance,
     changeCurrentTime,
     changeVideoDuration,
     changeCurrentUnitIndex,
+    changeScrollLeft,
   }
 })
