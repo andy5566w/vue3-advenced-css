@@ -19,6 +19,14 @@
   -webkit-text-size-adjust: 100%;
 }
 
+/* tailwind customize css variable */
+@layer utilities {
+  .main-color {
+    color: #646cff;
+  }
+}
+/* tailwind customize css variable */
+
 a {
   font-weight: 500;
   color: #646cff;
