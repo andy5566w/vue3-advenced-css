@@ -3,6 +3,7 @@
     <SmokeText />
     <FillText />
     <SocialMediaIcon />
+    <TextUnderLine />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import SmokeText from './animations/SmokeText.vue'
 import FillText from './animations/FillText.vue'
 import SocialMediaIcon from './animations/SocialMediaIcon.vue'
+import TextUnderLine from './duyi/TextUnderLineAnimation/TextUnderLine.vue'
 </script>
 
 <style scoped></style>
