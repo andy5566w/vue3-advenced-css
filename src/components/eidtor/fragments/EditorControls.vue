@@ -1,7 +1,15 @@
 <template>
   <div class="editorControls">
     <div class="editorControls__right">
-      <button @click="handleDecrease" class="focus:outline-0">-</button>
+      <span
+        class="editorControls__right--btn cursor-pointer hover:main-color transition"
+      >
+        <ion-icon
+          @click="handleDecrease"
+          name="remove-circle-outline"
+          size="large"
+        ></ion-icon>
+      </span>
       <input
         type="range"
         step="1"
@@ -10,7 +18,15 @@
         :value="zoomValue"
         @change="handleChange"
       />
-      <button @click="handleIncrease" class="focus:outline-0">+</button>
+      <span
+        class="editorControls__right--btn cursor-pointer hover:main-color transition"
+      >
+        <ion-icon
+          name="add-circle-outline"
+          size="large"
+          @click="handleIncrease"
+        ></ion-icon>
+      </span>
     </div>
   </div>
 </template>
@@ -66,8 +82,9 @@ const handleChange = (e) => {
     align-items: center;
     gap: 4px;
     padding: 1rem;
-    button {
-      border-radius: 50%;
+
+    &--btn {
+      height: 32px;
     }
   }
 }
