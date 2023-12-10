@@ -11,6 +11,7 @@
 <script setup>
 import { defineProps } from 'vue'
 import { useEditor } from '@/store/editor.js'
+import { generateVideoThumbnails } from '../../../js/video.js'
 const props = defineProps({
   src: {
     type: String,
@@ -22,6 +23,7 @@ const editor = useEditor()
 
 const handleLoadMetaData = (e) => {
   editor.changeVideoDuration(e.target.duration)
+  generateVideoThumbnails({ videoUrl: props.src })
 }
 
 const handleTimeUpdate = (e) => {

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 
 const UNITS = [
   { width: 80, time: 10, unit: '5 second' },
@@ -16,6 +16,8 @@ export const useEditor = defineStore('editor', () => {
   const units = ref(UNITS)
   const videoDuration = ref(0)
   const scrollLeft = ref(0)
+  const thumbsMap = reactive({})
+  const isReadyThumbs = ref(false)
 
   const currentUnit = computed(() => {
     return units.value[currentUnitIndex.value]
@@ -41,6 +43,10 @@ export const useEditor = defineStore('editor', () => {
     scrollLeft.value = width
   }
 
+  const changeIsReadyThumbs = (isReady) => {
+    isReadyThumbs.value = isReady
+  }
+
   return {
     currentTime,
     units,
@@ -48,9 +54,12 @@ export const useEditor = defineStore('editor', () => {
     videoDuration,
     scrollLeft,
     deltaDistance,
+    thumbsMap,
+    isReadyThumbs,
     changeCurrentTime,
     changeVideoDuration,
     changeCurrentUnitIndex,
     changeScrollLeft,
+    changeIsReadyThumbs,
   }
 })
