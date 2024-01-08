@@ -22,6 +22,11 @@ const duyi = [
         component: () =>
           import('@/components/duyi/showDirectionFolder/OpenFolder.vue'),
       },
+      {
+        path: 'chatGTP',
+        name: 'chatGTP',
+        component: () => import('@/components/duyi/chatGTP/index.vue'),
+      },
     ],
   },
 ]
