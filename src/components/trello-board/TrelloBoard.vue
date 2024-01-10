@@ -1,14 +1,15 @@
 <script setup>
 import { ref } from 'vue'
 import { nanoid } from 'nanoid'
+import TrelloBoardTask from './TrelloBoardTask.vue'
 const columns = ref([
   {
     id: nanoid(),
-    title: 'Create marketing landing page',
+    title: 'Back log',
     tasks: [
       {
         id: nanoid(),
-        title: 'create marketing landing page',
+        title: 'Create marketing landing page',
         createAt: new Date(),
       },
       {
@@ -47,12 +48,25 @@ const columns = ref([
 console.log(columns.value)
 </script>
 <template>
-  <div>
-    <div v-for="column in columns" :key="column.id">
-      <header>{{ column.title }}</header>
-      <p v-for="task in column.tasks" :key="task.id">
-        {{ task.title }}
-      </p>
+  <div class="p-10 h-[100vh] bg-teal-600 overflow-auto">
+    <div class="text-left text-black flex gap-4 overflow-x-auto items-start">
+      <div
+        v-for="column in columns"
+        :key="column.id"
+        class="column bg-gray-200 p-5 rounded min-w-[250px]"
+      >
+        <header class="font-bold mb-4">{{ column.title }}</header>
+        <trello-board-task
+          v-for="task in column.tasks"
+          v-bind="task"
+          :key="task.id"
+        />
+        <footer>
+          <button class="text-gray-500 bg-inherit focus:outline-0">
+            + Add a Card
+          </button>
+        </footer>
+      </div>
     </div>
   </div>
 </template>
