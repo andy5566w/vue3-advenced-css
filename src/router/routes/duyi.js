@@ -27,6 +27,11 @@ const duyi = [
         name: 'chatGTP',
         component: () => import('@/components/duyi/chatGTP/index.vue'),
       },
+      {
+        path: 'animation',
+        name: 'animation',
+        component: () => import('@/components/duyi/animation/Animation.vue'),
+      },
     ],
   },
 ]
