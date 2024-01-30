@@ -23,6 +23,8 @@
     <TwoSkewButton />
     <PulsingButton />
     <DiagonalSwipeButton />
+    <testSetUp ref="setup" />
+    <testScruptSetUp ref="setupScript" />
   </div>
 </template>
 
@@ -50,6 +52,18 @@ import TwoCutsButton from './buttons/TwoCutsButton.vue'
 import TwoSkewButton from './buttons/TwoSkewButton.vue'
 import PulsingButton from './buttons/PulsingButton.vue'
 import DiagonalSwipeButton from './buttons/DiagonalSwipeButton.vue'
+import testSetUp from './testViteInspect/setup.vue'
+import testScruptSetUp from './testViteInspect/setupScript.vue'
+import { ref, onMounted } from 'vue'
+
+const setup = ref(null)
+const setupScript = ref(null)
+onMounted(() => {
+  console.log({
+    setup: setup.value,
+    setupScript: setupScript.value,
+  })
+})
 </script>
 
 <style lang="scss" scoped></style>
