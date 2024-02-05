@@ -2,11 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 import duyi from './routes/duyi.js'
 import editor from './routes/editor.js'
 import school from './routes/school.js'
+import blog from './routes/blog.js'
 
 const routes = [
   ...duyi,
   ...editor,
   ...school,
+  ...blog,
   {
     path: '/',
     redirect: () => ({
