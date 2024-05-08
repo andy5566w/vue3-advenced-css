@@ -1,7 +1,7 @@
 <template>
   <div class="fading-img">
     <BaseImage
-      image-path="/src/assets/images/paris.jpeg"
+      :image-path="imgPath"
       caption="Caption!!"
       content="Please type something..."
     />
@@ -10,6 +10,8 @@
 
 <script setup>
 import BaseImage from './BaseImage.vue'
+import imgPath from '@/assets/images/paris.jpeg'
+
 </script>
 
 <style lang="scss">

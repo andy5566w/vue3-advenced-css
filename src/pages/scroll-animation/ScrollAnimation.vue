@@ -1,13 +1,5 @@
 <template>
   <div class="imgs">
-    <img
-      src="imgs/img-1.png"
-      data-img
-      id="img-1"
-      class="top-section-img show"
-    />
-    <img src="imgs/img-2.png" data-img id="img-2" />
-    <img src="imgs/img-3.png" data-img id="img-3" />
   </div>
   <section class="top-section full-screen-section">
     <div class="left">

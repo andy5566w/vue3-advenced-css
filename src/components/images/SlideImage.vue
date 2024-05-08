@@ -2,7 +2,7 @@
   <div class="slide-container">
     <img
       class="w-full h-full"
-      src="/src/assets/images/market.jpeg"
+      :src="imgPath"
       alt="market"
     />
     <div class="caption">
@@ -16,7 +16,9 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import imgPath from '@/assets/images/market.jpeg'
+</script>
 
 <style scoped lang="scss">
 .slide-container {

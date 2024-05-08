@@ -1,7 +1,7 @@
 <template>
   <div class="moving-img">
     <BaseImage
-      image-path="/src/assets/images/bali.jpeg"
+      :image-path="imgPath"
       caption="Caption!!"
       content="Please type something..."
     />
@@ -10,6 +10,7 @@
 
 <script setup>
 import BaseImage from './BaseImage.vue'
+import imgPath from '@/assets/images/bali.jpeg'
 </script>
 
 <style lang="scss">

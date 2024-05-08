@@ -1,7 +1,7 @@
 <template>
   <div class="delay-img">
     <BaseImage
-      image-path="/src/assets/images/beach.jpeg"
+      :image-path="imgPath"
       caption="Caption!!"
       content="Please type something..."
     />
@@ -10,6 +10,7 @@
 
 <script setup>
 import BaseImage from './BaseImage.vue'
+import imgPath from '@/assets/images/beach.jpeg'
 </script>
 
 <style lang="scss">
