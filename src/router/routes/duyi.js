@@ -32,6 +32,11 @@ const duyi = [
         name: 'animation',
         component: () => import('@/components/duyi/animation/Animation.vue'),
       },
+      {
+        path: 'drag',
+        name: 'drag',
+        component: () => import('../../components/duyi/dragAndDrop/index.vue'),
+      },
     ],
   },
 ]
