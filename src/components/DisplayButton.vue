@@ -25,6 +25,7 @@
     <DiagonalSwipeButton />
     <testSetUp ref="setup" />
     <testScruptSetUp ref="setupScript" />
+    <TestFullScreen />
   </div>
 </template>
 
@@ -54,6 +55,7 @@ import PulsingButton from './buttons/PulsingButton.vue'
 import DiagonalSwipeButton from './buttons/DiagonalSwipeButton.vue'
 import testSetUp from './testViteInspect/setup.vue'
 import testScruptSetUp from './testViteInspect/setupScript.vue'
+import TestFullScreen from './buttons/TestFullScreen.vue'
 import { ref, onMounted } from 'vue'
 
 const setup = ref(null)
