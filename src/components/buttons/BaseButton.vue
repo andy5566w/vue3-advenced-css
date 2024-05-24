@@ -2,7 +2,7 @@
   <a
     href="#"
     class="px-8 py-4 border-4 border-current relative transition duration-150 ease-out"
-    >Button</a
+    ><slot>Button</slot></a
   >
 </template>
 
