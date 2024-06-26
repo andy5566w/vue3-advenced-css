@@ -1,8 +1,10 @@
 <template>
-  <button @click="handleClick">open folder</button>
+  <button @click="handleClick" class="open">open folder</button>
   <div>
     {{ content }}
   </div>
+
+  <div class="circle"></div>
 </template>
 
 <script setup>
@@ -42,4 +44,79 @@ const processHandle = async (handle) => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+@use 'sass:math';
+$breakpoints: (
+  iphone: (
+    320,
+    480,
+  ),
+  pad: (
+    480,
+    720,
+  ),
+  notebook: (
+    720,
+    960,
+  ),
+  pc: (
+    920,
+    1020,
+  ),
+);
+@mixin responseTo($breakpoint) {
+  $dp: map-get($breakpoints, $breakpoint);
+
+  @if type-of($dp) == 'list' {
+    @media (min-width: nth($dp,1)) and (max-width: nth($dp,2)) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $dp) {
+      @content;
+    }
+  }
+}
+
+@mixin flex-center($layout: flex-end) {
+  display: flex;
+  justify-content: $layout;
+  align-items: $layout;
+
+  @content;
+}
+
+.open {
+  $base-color: limegreen;
+  @include flex-center {
+    height: 100%;
+  }
+
+  @include responseTo('pad') {
+    height: 500%;
+  }
+
+  @include responseTo('pc') {
+    height: 200%;
+  }
+
+  //@for $i from 1 through 4 {
+  //  ul:nth-child(3n + #{$i}) {
+  //    background-color: lighten($base-color, $i * 5%);
+  //  }
+  //}
+  color: red;
+}
+
+.circle {
+  $r: 100px;
+  $deg: 80deg;
+  $x: $r * math.cos($deg);
+  $y: -$r * math.sin($deg);
+  transform: translate($x, $y);
+  border-radius: 50%;
+  background-color: #fff;
+  width: 150px;
+  height: 150px;
+}
+</style>
