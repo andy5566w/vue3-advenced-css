@@ -24,6 +24,7 @@
   </div>
 </template>
 <script setup>
+// ref https://github.com/jtwang7/JavaScript-Note/issues/2
 import { ref, onMounted } from 'vue'
 import carousel1 from '@/assets/carousel/carousel1.jpeg'
 import carousel2 from '@/assets/carousel/carousel2.jpeg'
