@@ -8,6 +8,11 @@ const carousel = [
         name: 'carousel',
         component: () => import('@/pages/carousel/4DCarousel.vue'),
       },
+      {
+        path: 'regular',
+        name: 'carousel',
+        component: () => import('@/pages/carousel/RegularCarousel.vue'),
+      },
     ],
   },
 ]
