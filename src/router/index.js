@@ -3,12 +3,14 @@ import duyi from './routes/duyi.js'
 import editor from './routes/editor.js'
 import school from './routes/school.js'
 import carousel from './routes/carousel.js'
+import youtubePlayer from './routes/youtubePlayer.js'
 
 const routes = [
   ...duyi,
   ...editor,
   ...school,
   ...carousel,
+  ...youtubePlayer,
   {
     path: '/',
     redirect: () => ({
