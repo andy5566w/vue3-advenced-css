@@ -81,6 +81,16 @@ onBeforeUnmount(() => {
     }
   }
 
+  &:before {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+    aspect-ratio: 6 / 1;
+    width: 100%;
+    pointer-events: none;
+    content: '';
+  }
+
   &.pause .pause-icon {
     display: none;
   }
