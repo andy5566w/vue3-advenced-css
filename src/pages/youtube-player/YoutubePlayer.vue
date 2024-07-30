@@ -1,8 +1,12 @@
 <template>
-  <div class="video-container">
+  <div class="video-container" :class="{ pause: !isVideoPlaying }">
     <div class="video-controls-containers">
       <div class="controls">
-        <button class="play-pause-btn">
+        <button
+          class="play-pause-btn"
+          ref="playPauseButton"
+          @click="togglePlay"
+        >
           <svg class="play-icon" viewBox="0 0 24 24">
             <path fill="currentColor" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
           </svg>
@@ -12,12 +16,32 @@
         </button>
       </div>
     </div>
-    <video :src="videoUrl" controls></video>
+    <video
+      :src="videoUrl"
+      autoplay
+      muted
+      ref="videoRef"
+      @play="isVideoPlaying = true"
+      @pause="isVideoPlaying = false"
+    ></video>
   </div>
 </template>
 
 <script setup>
 import videoUrl from '@/assets/videos/cat-birthday.mp4'
+import { ref } from 'vue'
+
+const playPauseButton = ref(null)
+const videoRef = ref(null)
+const isVideoPlaying = ref(false)
+
+const togglePlay = () => {
+  const video = videoRef?.value
+  if (!video) {
+    return
+  }
+  video.paused ? video.play() : video.pause()
+}
 </script>
 
 <style scoped lang="scss">
