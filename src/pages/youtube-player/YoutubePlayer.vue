@@ -18,18 +18,17 @@
     </div>
     <video
       :src="videoUrl"
-      autoplay
-      muted
       ref="videoRef"
       @play="isVideoPlaying = true"
       @pause="isVideoPlaying = false"
+      @click="togglePlay"
     ></video>
   </div>
 </template>
 
 <script setup>
 import videoUrl from '@/assets/videos/cat-birthday.mp4'
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const playPauseButton = ref(null)
 const videoRef = ref(null)
@@ -42,6 +41,22 @@ const togglePlay = () => {
   }
   video.paused ? video.play() : video.pause()
 }
+
+const handleKeyDown = (e) => {
+  switch (e.key.toLowerCase()) {
+    case ' ':
+    case 'k':
+      togglePlay()
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeyDown)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', handleKeyDown)
+})
 </script>
 
 <style scoped lang="scss">
