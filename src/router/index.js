@@ -4,6 +4,7 @@ import editor from './routes/editor.js'
 import school from './routes/school.js'
 import carousel from './routes/carousel.js'
 import youtubePlayer from './routes/youtubePlayer.js'
+import progress from './routes/progress.js'
 
 const routes = [
   ...duyi,
@@ -11,6 +12,7 @@ const routes = [
   ...school,
   ...carousel,
   ...youtubePlayer,
+  ...progress,
   {
     path: '/',
     redirect: () => ({
