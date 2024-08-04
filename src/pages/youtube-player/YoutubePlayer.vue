@@ -24,7 +24,7 @@
           </svg>
         </button>
         <div class="volume-container">
-          <button class="mute-btn" @click="handleToggleMuted">
+          <button class="mute-btn" @click="toggleMuted">
             <svg class="volume-high-icon" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
@@ -55,6 +55,11 @@
             ref="volumeSlide"
             @input="handleVolumeSlideInput"
           />
+        </div>
+        <div class="duration-container">
+          <div class="current-time">{{ currentVideoTime }}</div>
+          /
+          <div class="total-time">{{ totalVideoTime }}</div>
         </div>
         <button
           class="min-player-btn"
@@ -105,13 +110,15 @@
       @pause="isVideoPlaying = false"
       @click="togglePlay"
       @volumechange="handleVolumeChange"
+      @loadeddata="handleLoadeddata"
+      @timeupdate="handleTimeUpdate"
     ></video>
   </div>
 </template>
 
 <script setup>
 import videoUrl from '@/assets/videos/cat-birthday.mp4'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 
 const playPauseButton = ref(null)
 const videoRef = ref(null)
@@ -121,6 +128,8 @@ const isFullScreenMode = ref(false)
 const isMinPlayerMode = ref(false)
 const volumeSlide = ref(null)
 const volumeLevel = ref('low')
+const currentTime = ref(0)
+const duration = ref(0)
 
 const togglePlay = () => {
   const video = videoRef?.value
@@ -169,14 +178,45 @@ const handleKeyDown = (e) => {
     case 'i':
       toggleMinPlayerMode()
       break
+    case 'm':
+      toggleMuted()
+      break
+    case 'arrowleft':
+    case 'j':
+      skip(-5)
+      break
+    case 'arrowright':
+    case 'l':
+      skip(5)
+      break
   }
+}
+const totalVideoTime = computed(() =>
+  new Date(duration.value * 1000 - 1000 * 60 * 60 * 8).toString().slice(17, 24)
+)
+const currentVideoTime = computed(() =>
+  new Date(currentTime.value * 1000 - 1000 * 60 * 60 * 8)
+    .toString()
+    .slice(17, 24)
+)
+const handleLoadeddata = (event) => {
+  duration.value = event.target.duration
+}
+
+const handleTimeUpdate = (event) => {
+  currentTime.value = event.target.currentTime
+}
+
+const skip = (second) => {
+  const video = videoRef?.value
+  video.currentTime += second
 }
 
 const handleFullScreenChange = () => {
   isFullScreenMode.value = Boolean(document.fullscreenElement)
 }
 
-const handleToggleMuted = () => {
+const toggleMuted = () => {
   const video = videoRef?.value
   video.muted = !video.muted
 }
@@ -320,6 +360,7 @@ onBeforeUnmount(() => {
     opacity: 0;
     z-index: 100;
     transition: opacity 0.25s ease-in-out;
+    width: 100%;
     color: white;
 
     .controls {
@@ -383,6 +424,13 @@ onBeforeUnmount(() => {
   }
   &[data-volume-level='muted'] .volume-muted-icon {
     display: block;
+  }
+
+  .duration-container {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    gap: 0.25rem;
   }
 }
 </style>
