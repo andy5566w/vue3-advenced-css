@@ -7,7 +7,7 @@
       'mini-player': isMinPlayerMode,
       'full-screen-section': isFullScreenMode,
     }"
-    data-volume-level="low"
+    :data-volume-level="volumeLevel"
   >
     <div class="video-controls-containers">
       <div class="controls">
@@ -24,7 +24,7 @@
           </svg>
         </button>
         <div class="volume-container">
-          <button class="mute-btn">
+          <button class="mute-btn" @click="handleToggleMuted">
             <svg class="volume-high-icon" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
@@ -52,6 +52,8 @@
             max="1"
             step="any"
             value="1"
+            ref="volumeSlide"
+            @input="handleVolumeSlideInput"
           />
         </div>
         <button
@@ -102,6 +104,7 @@
       @play="isVideoPlaying = true"
       @pause="isVideoPlaying = false"
       @click="togglePlay"
+      @volumechange="handleVolumeChange"
     ></video>
   </div>
 </template>
@@ -116,6 +119,8 @@ const isVideoPlaying = ref(false)
 const isTheaterMode = ref(false)
 const isFullScreenMode = ref(false)
 const isMinPlayerMode = ref(false)
+const volumeSlide = ref(null)
+const volumeLevel = ref('low')
 
 const togglePlay = () => {
   const video = videoRef?.value
@@ -169,6 +174,30 @@ const handleKeyDown = (e) => {
 
 const handleFullScreenChange = () => {
   isFullScreenMode.value = Boolean(document.fullscreenElement)
+}
+
+const handleToggleMuted = () => {
+  const video = videoRef?.value
+  video.muted = !video.muted
+}
+
+const handleVolumeSlideInput = (e) => {
+  const video = videoRef?.value
+  video.volume = e.target.value
+  video.muted = e.target.value === 0
+}
+
+const handleVolumeChange = () => {
+  const video = videoRef?.value
+  volumeSlide.value.value = video.volume
+  if (video.muted || video.volume === 0) {
+    volumeLevel.value = 'muted'
+    volumeSlide.value.value = 0
+  } else if (video.volume >= 0.5) {
+    volumeLevel.value = 'high'
+  } else {
+    volumeLevel.value = 'low'
+  }
 }
 
 const handleEnterPictureInPicture = () => {
@@ -352,7 +381,7 @@ onBeforeUnmount(() => {
   &[data-volume-level='low'] .volume-low-icon {
     display: block;
   }
-  &[data-volume-level='mute'] .volume-muted-icon {
+  &[data-volume-level='muted'] .volume-muted-icon {
     display: block;
   }
 }
