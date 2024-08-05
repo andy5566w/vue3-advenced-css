@@ -4,7 +4,7 @@
 
     <div class="dialog-container caret-gray-700">
       <p class="message">{{ message }}</p>
-      <button @click="$emit('close')">OK</button>
+      <button class="button" @click="$emit('close')">OK</button>
     </div>
   </div>
 </template>
@@ -33,15 +33,33 @@ defineEmits(['close'])
     width: 100%;
     height: 100%;
   }
-  // The dialog style need to modify
+
   .dialog-container {
+    display: flex;
     position: absolute;
     top: 50%;
     left: 50%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     translate: -50% -50%;
     border: 1px solid #2d3436;
     border-radius: 5px;
+    background-color: cadetblue;
     padding: 0.5rem;
+    aspect-ratio: 2 / 1;
+    width: 300px;
+
+    .message {
+      font-size: 1.3rem;
+    }
+
+    .button {
+      all: initial;
+      cursor: pointer;
+      margin-left: auto;
+      padding: 0.5rem;
+    }
   }
 }
 </style>

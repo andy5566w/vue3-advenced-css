@@ -4,7 +4,6 @@ import showMessage from '../../js/packagePopup/showMessage.js'
 
 const handleClick = () => {
   showMessage('message from index.vue', (close) => {
-    console.log('hi')
     close()
   })
 }
