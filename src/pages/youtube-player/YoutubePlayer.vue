@@ -6,7 +6,9 @@
       theater: isTheaterMode,
       'mini-player': isMinPlayerMode,
       'full-screen-section': isFullScreenMode,
+      captions: isShowCaptions,
     }"
+    :data-tset="isShowCaptions"
     :data-volume-level="volumeLevel"
   >
     <div class="video-controls-containers">
@@ -61,7 +63,7 @@
           /
           <div class="total-time">{{ totalVideoTime }}</div>
         </div>
-        <button class="captions-btn">
+        <button class="captions-btn" @click="toggleCaption">
           <svg viewBox="0 0 24 24">
             <path
               fill="currentColor"
@@ -141,6 +143,8 @@ const volumeSlide = ref(null)
 const volumeLevel = ref('low')
 const currentTime = ref(0)
 const duration = ref(0)
+const captions = ref(null)
+const isShowCaptions = ref(false)
 
 const togglePlay = () => {
   const video = videoRef?.value
@@ -164,6 +168,12 @@ const toggleMinPlayerMode = () => {
   } else {
     videoRef.value.requestPictureInPicture()
   }
+}
+
+const toggleCaption = (e) => {
+  const isHidden = captions.value.mode === 'hidden'
+  isShowCaptions.value = isHidden
+  captions.value.mode = isHidden ? 'showing' : 'hidden'
 }
 
 const handleKeyDown = (e) => {
@@ -271,6 +281,9 @@ onMounted(() => {
     'leavepictureinpicture',
     handleLeavePictureInPicture
   )
+
+  captions.value = videoRef.value.textTracks[0]
+  captions.value.mode = 'hidden'
 })
 
 onBeforeUnmount(() => {
