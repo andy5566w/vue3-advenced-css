@@ -71,6 +71,7 @@
             />
           </svg>
         </button>
+        <button class="speed-btn wide-btn">1x</button>
         <button
           class="min-player-btn"
           ref="minPlayerButton"
@@ -396,6 +397,10 @@ onBeforeUnmount(() => {
       align-items: center;
       gap: 0.5rem;
       padding: 0.25rem;
+      button.wide-btn {
+        width: 50px;
+        text-align: center;
+      }
     }
   }
 
