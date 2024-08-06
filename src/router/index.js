@@ -100,6 +100,11 @@ const routes = [
     name: 'css-practice',
     component: () => import('../pages/css-practice/index.vue'),
   },
+  {
+    path: '/test-touch',
+    name: 'test-touch',
+    component: () => import('../pages/touchEvent/TestTouchEvent.vue'),
+  },
 ]
 
 const router = createRouter({
