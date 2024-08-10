@@ -13,6 +13,11 @@ const carousel = [
         name: 'carousel',
         component: () => import('@/pages/carousel/RegularCarousel.vue'),
       },
+      {
+        path: 'touch-carousel',
+        name: 'touch-carousel',
+        component: () => import('@/pages/carousel/TouchCarousel.vue'),
+      },
     ],
   },
 ]

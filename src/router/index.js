@@ -105,6 +105,12 @@ const routes = [
     name: 'test-touch',
     component: () => import('../pages/touchEvent/TestTouchEvent.vue'),
   },
+  {
+    path: '/test-animation',
+    name: 'test-animation',
+    component: () =>
+      import('../pages/testAnimation/DiffAnimationAndSetInterval.vue'),
+  },
 ]
 
 const router = createRouter({

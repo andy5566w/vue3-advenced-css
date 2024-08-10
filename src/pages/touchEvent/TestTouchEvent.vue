@@ -23,13 +23,13 @@ const bindTouchEvent = () => {
     'touchend',
     'touchcancel',
     'click',
-    'pointerover',
-    'pointerenter',
-    'pointerdown',
-    'pointermove',
-    'pointerup',
-    'pointercancel',
-    'pointerout',
+    // 'pointerover',
+    // 'pointerenter',
+    // 'pointerdown',
+    // 'pointermove',
+    // 'pointerup',
+    // 'pointercancel',
+    // 'pointerout',
   ]
   events.forEach((eventName) => {
     const parent = parentRef.value
@@ -50,11 +50,14 @@ const bindTouchEvent = () => {
     children.addEventListener(
       eventName,
       (event) => {
+        // // console.log(event.cancelable)
+        event.preventDefault()
         console.table({ element: 'children', capture: true, eventName })
       },
       true
     )
     children.addEventListener(eventName, (event) => {
+      event.stopPropagation()
       console.table({ element: 'children', capture: false, eventName })
     })
 
@@ -77,10 +80,13 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+* {
+  border: 1px solid red;
+}
 .patent {
   position: relative;
   background-color: lightblue;
-  width: 500px;
+  width: 350px;
   height: 500px;
 }
 
@@ -91,5 +97,16 @@ onMounted(() => {
   background-color: olive;
   width: 200px;
   height: 200px;
+}
+
+.wrap {
+  background-color: #fff;
+  height: 300px;
+  overflow: auto;
+}
+.log-box {
+  background-color: rebeccapurple;
+  width: 500px;
+  height: 500vh;
 }
 </style>
