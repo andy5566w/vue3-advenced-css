@@ -1,30 +1,33 @@
 import { ref, computed, onMounted } from 'vue'
 
-function useCarousel(carouselRef) {
+function useCarousel() {
   let startX
 
   const distance = ref(0)
   const direction = computed(() => (distance.value > 0 ? 'left' : 'right'))
+  const isMoving = ref(false)
+  const currentIndex = ref(0)
   const handleTouchStart = (event) => {
-    console.log('touch start', carouselRef)
     startX = event.targetTouches[0].pageX
-    console.log(event)
+    isMoving.value = true
   }
   const handleTouchMove = (event) => {
-    // console.log('touch move')
     const pageX = event.targetTouches[0].pageX
-    distance.value = startX - pageX
+    distance.value = pageX - startX
   }
   const handleTouchEnd = (event) => {
-    console.log('touch end')
+    isMoving.value = false
+    if (direction.value === 'right') {
+      currentIndex.value++
+    } else {
+      currentIndex.value--
+    }
   }
 
-  onMounted(() => {
-    console.log('mounted', carouselRef)
-  })
   return {
     distance,
-    direction,
+    isMoving,
+    currentIndex,
     handleTouchStart,
     handleTouchMove,
     handleTouchEnd,

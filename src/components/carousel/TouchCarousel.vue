@@ -57,23 +57,24 @@ const images = [
   },
 ]
 const carouselRef = ref(null)
-const currentIndex = ref(0)
+const {
+  isMoving,
+  distance,
+  currentIndex,
+  handleTouchEnd,
+  handleTouchMove,
+  handleTouchStart,
+} = useCarousel(carouselRef.value)
 
 const translateX = computed(() => {
   if (!carouselRef.value || !distance.value) {
     return 0
   }
-  // TODO here need to change logic
-  return -carouselRef.value.clientWidth * currentIndex.value + distance.value
+  if (isMoving.value) {
+    return -carouselRef.value.clientWidth * currentIndex.value + distance.value
+  }
+  return -carouselRef.value.clientWidth * currentIndex.value
 })
-
-const {
-  direction,
-  distance,
-  handleTouchEnd,
-  handleTouchMove,
-  handleTouchStart,
-} = useCarousel(carouselRef.value)
 </script>
 
 <style scoped lang="scss">
@@ -83,6 +84,7 @@ const {
 }
 .wrap {
   display: flex;
+  transition: all 0.2s;
 
   &-item {
     flex-grow: 1;
