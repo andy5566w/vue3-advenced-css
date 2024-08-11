@@ -3,7 +3,7 @@
     <div
       class="wrap"
       ref="carouselRef"
-      :style="{ translate: `${translateX}px 0` }"
+      :style="{ translate: `${translateX}px 0px` }"
       @touchstart="handleTouchStart"
       @touchmove="handleTouchMove"
       @touchend="handleTouchEnd"
@@ -78,6 +78,9 @@ const translateX = computed(() => {
 </script>
 
 <style scoped lang="scss">
+* {
+  border: 1px solid red;
+}
 .carousel-container {
   width: 350px;
   overflow: hidden;

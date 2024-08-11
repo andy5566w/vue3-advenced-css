@@ -17,9 +17,9 @@ function useCarousel() {
   }
   const handleTouchEnd = (event) => {
     isMoving.value = false
-    if (direction.value === 'right') {
+    if (direction.value === 'right' && currentIndex.value !== 7) {
       currentIndex.value++
-    } else {
+    } else if (currentIndex.value !== 0) {
       currentIndex.value--
     }
   }
