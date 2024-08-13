@@ -3,7 +3,7 @@
     <div
       class="wrap"
       ref="carouselRef"
-      :style="{ translate: `${translateX}px 0px` }"
+      :style="{ '--translateX': translateX + 'px' }"
       @touchstart="handleTouchStart"
       @touchmove="handleTouchMove"
       @touchend="handleTouchEnd"
@@ -86,7 +86,9 @@ const translateX = computed(() => {
   overflow: hidden;
 }
 .wrap {
+  --translateX: 0;
   display: flex;
+  transform: translateX(var(--translateX));
   transition: all 0.2s;
 
   &-item {

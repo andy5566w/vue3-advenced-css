@@ -1,4 +1,5 @@
 <template>
+  <h1>version 1.0</h1>
   <TouchCarousel />
 </template>
 
