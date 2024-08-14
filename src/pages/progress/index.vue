@@ -1,11 +1,10 @@
 <script setup>
 import DownloadProgress from '../../components/progress/DownloadProgress.vue'
-import showMessage from '../../js/packagePopup/showMessage.js'
+import useShowMessage from '../../js/packagePopup/showMessage.js'
 
+const { toggleDialog } = useShowMessage()
 const handleClick = () => {
-  showMessage('This is warning', (close) => {
-    close()
-  })
+  toggleDialog(true)
 }
 </script>
 

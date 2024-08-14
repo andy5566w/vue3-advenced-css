@@ -1,20 +1,22 @@
 import Message from '../../components/popup/Message.vue'
-import { createApp } from 'vue'
+import { ref } from 'vue'
 
-function showMessage(message, clickHandler) {
-  const div = document.createElement('div')
-  document.body.appendChild(div)
-
-  createApp(Message, {
-    message,
-    onClose() {
-      clickHandler && clickHandler(closeDialog)
-    },
-  }).mount(div)
-
+const isShow = ref(false)
+function useShowMessage() {
   const closeDialog = () => {
-    div.remove()
+    toggleDialog(false)
+  }
+
+  const toggleDialog = (bool) => {
+    isShow.value = bool
+  }
+
+  return {
+    isShow,
+    targetComponent: Message,
+    toggleDialog,
+    closeDialog,
   }
 }
 
-export default showMessage
+export default useShowMessage
