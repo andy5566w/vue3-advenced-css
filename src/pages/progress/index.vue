@@ -1,10 +1,14 @@
 <script setup>
 import DownloadProgress from '../../components/progress/DownloadProgress.vue'
-import useShowMessage from '../../js/packagePopup/showMessage.js'
+import Message from '../../components/popup/Message.vue'
+import { useShowMessage } from '../../js/packagePopup/showMessage.js'
 
-const { toggleDialog } = useShowMessage()
 const handleClick = () => {
-  toggleDialog(true)
+  useShowMessage(
+    Message,
+    { message: 'this is test 98', title: 'this is title' },
+    {}
+  )
 }
 </script>
 

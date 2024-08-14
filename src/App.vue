@@ -1,14 +1,17 @@
 <script setup>
-import useShowMessage from './js/packagePopup/showMessage.js'
-
-const { targetComponent, isShow } = useShowMessage()
+import { initializeTeleport } from './js/packagePopup/showMessage.js'
+const { targetComponent, isShowTeleport, vBind, vOn } = initializeTeleport()
 </script>
 
 <template>
   <router-view />
-  {{ isShow + '' }}
   <teleport to="body">
-    <component v-if="isShow" :is="targetComponent" />
+    <component
+      v-if="isShowTeleport"
+      :is="targetComponent"
+      v-bind="vBind"
+      v-on="vOn"
+    />
   </teleport>
 </template>
 

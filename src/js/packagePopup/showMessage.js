@@ -1,22 +1,31 @@
 import Message from '../../components/popup/Message.vue'
-import { ref } from 'vue'
+import { ref, shallowRef } from 'vue'
 
-const isShow = ref(false)
-function useShowMessage() {
-  const closeDialog = () => {
-    toggleDialog(false)
-  }
+const vBind = ref({})
+const vOn = ref({})
+const isShowTeleport = ref(false)
+let targetComponent = shallowRef({})
 
-  const toggleDialog = (bool) => {
-    isShow.value = bool
-  }
-
-  return {
-    isShow,
-    targetComponent: Message,
-    toggleDialog,
-    closeDialog,
-  }
+const toggleDialog = (bool) => {
+  isShowTeleport.value = bool
 }
 
-export default useShowMessage
+const closeDialog = () => {
+  toggleDialog(false)
+  targetComponent.vaue = null
+}
+
+function useShowMessage(component, _vBind, _vOn) {
+  targetComponent.value = component
+  vBind.value = _vBind
+  vOn.value = { ..._vOn, close: closeDialog }
+  toggleDialog(true)
+
+  return closeDialog
+}
+
+function initializeTeleport() {
+  return { isShowTeleport, vBind, vOn, targetComponent }
+}
+
+export { useShowMessage, initializeTeleport }

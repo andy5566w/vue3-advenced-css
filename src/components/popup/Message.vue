@@ -3,6 +3,7 @@
     <div class="overlay" @click="$emit('close')"></div>
 
     <div class="dialog-container caret-gray-700">
+      <h1>{{ title }}</h1>
       <p class="message">{{ message }}</p>
       <button class="button" @click="$emit('close')">close</button>
     </div>
@@ -10,6 +11,7 @@
 </template>
 <script setup>
 defineProps({
+  title: String,
   message: {
     type: String,
     default: () => 'this is default message',
