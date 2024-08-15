@@ -9,6 +9,15 @@ const youtubePlayer = [
         props: true,
         component: () => import('../../pages/youtube-player/YoutubePlayer.vue'),
       },
+      {
+        path: 'xgplayer',
+        name: 'xgplayer',
+        props: true,
+        component: () =>
+          import(
+            '../../pages/youtube-player/PictureInPicture/VideoInPicture.vue'
+          ),
+      },
     ],
   },
 ]
