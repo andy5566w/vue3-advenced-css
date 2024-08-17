@@ -1,8 +1,8 @@
 <template>
   <div class="dialog">
-    <div class="overlay" @click="$emit('close')"></div>
+    <div class="overlay"></div>
 
-    <div class="dialog-container caret-gray-700">
+    <div class="dialog-container caret-gray-700" ref="dialogRef">
       <h1>{{ title }}</h1>
       <p class="message">{{ message }}</p>
       <button class="button" @click="$emit('close')">close</button>
@@ -10,6 +10,10 @@
   </div>
 </template>
 <script setup>
+import { onClickOutside } from '@vueuse/core'
+import { ref } from 'vue'
+
+const dialogRef = ref(null)
 defineProps({
   title: String,
   message: {
@@ -18,7 +22,12 @@ defineProps({
   },
 })
 
-defineEmits(['close'])
+const emit = defineEmits(['close'])
+
+onClickOutside(dialogRef, () => {
+  console.log('outside')
+  emit('close')
+})
 </script>
 
 <style scoped lang="scss">
