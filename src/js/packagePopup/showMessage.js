@@ -18,7 +18,7 @@ const closeDialog = () => {
 function useShowMessage(component, _vBind, _vOn) {
   targetComponent.value = component
   vBind.value = _vBind
-  vOn.value = { ..._vOn, close: closeDialog }
+  vOn.value = { close: closeDialog, ..._vOn }
   toggleDialog(true)
 
   return closeDialog
