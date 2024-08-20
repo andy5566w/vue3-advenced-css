@@ -82,7 +82,7 @@ const translateX = computed(() => {
   border: 1px solid red;
 }
 .carousel-container {
-  width: 350px;
+  max-width: 300px;
   overflow: hidden;
 }
 .wrap {

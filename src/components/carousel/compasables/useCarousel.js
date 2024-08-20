@@ -1,5 +1,9 @@
 import { ref, computed, onMounted } from 'vue'
 
+const handleWheel = (event) => {
+  event.preventDefault()
+}
+
 function useCarousel() {
   let startX
 
@@ -10,6 +14,7 @@ function useCarousel() {
   const handleTouchStart = (event) => {
     startX = event.targetTouches[0].pageX
     isMoving.value = true
+    window.addEventListener('wheel', handleWheel, { passive: false })
   }
   const handleTouchMove = (event) => {
     const pageX = event.targetTouches[0].pageX
@@ -22,6 +27,7 @@ function useCarousel() {
     } else if (currentIndex.value !== 0) {
       currentIndex.value--
     }
+    window.removed('wheel', handleWheel, { passive: false })
   }
 
   return {
