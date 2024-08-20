@@ -27,7 +27,7 @@ function useCarousel() {
     } else if (currentIndex.value !== 0) {
       currentIndex.value--
     }
-    window.removed('wheel', handleWheel, { passive: false })
+    window.removeEventListener('wheel', handleWheel)
   }
 
   return {
