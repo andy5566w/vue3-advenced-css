@@ -8,7 +8,12 @@
       @touchmove="handleTouchMove"
       @touchend="handleTouchEnd"
     >
-      <div class="wrap-item" v-for="{ path, name } in images" :key="name">
+      <div
+        class="wrap-item"
+        v-for="{ path, name } in images"
+        :key="name"
+        @click="() => {}"
+      >
         <img :src="path" :alt="name" />
       </div>
     </div>
