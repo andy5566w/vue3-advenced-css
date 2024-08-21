@@ -11,26 +11,32 @@ function useCarousel() {
   const direction = computed(() => (distance.value > 0 ? 'left' : 'right'))
   const isMoving = ref(false)
   const currentIndex = ref(0)
+  const text = ref([])
   const handleTouchStart = (event) => {
     startX = event.targetTouches[0].pageX
     isMoving.value = true
+    // TODO There're ug
     window.addEventListener('wheel', handleWheel, { passive: false })
+    text.value.push('start')
   }
   const handleTouchMove = (event) => {
     const pageX = event.targetTouches[0].pageX
     distance.value = pageX - startX
   }
   const handleTouchEnd = (event) => {
+    text.value.push('end')
     isMoving.value = false
     if (direction.value === 'right' && currentIndex.value !== 7) {
       currentIndex.value++
     } else if (currentIndex.value !== 0) {
       currentIndex.value--
     }
+    console.log(text.value)
     window.removeEventListener('wheel', handleWheel)
   }
 
   return {
+    text,
     distance,
     isMoving,
     currentIndex,

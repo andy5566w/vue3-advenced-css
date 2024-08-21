@@ -12,6 +12,7 @@
         <img :src="path" :alt="name" />
       </div>
     </div>
+    <p class="text-amber-200">{{ text }}</p>
   </div>
 </template>
 
@@ -58,6 +59,7 @@ const images = [
 ]
 const carouselRef = ref(null)
 const {
+  text,
   isMoving,
   distance,
   currentIndex,
