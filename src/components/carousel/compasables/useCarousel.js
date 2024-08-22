@@ -15,8 +15,6 @@ function useCarousel() {
   const handleTouchStart = (event) => {
     startX = event.targetTouches[0].pageX
     isMoving.value = true
-    // TODO There're ug
-    window.addEventListener('wheel', handleWheel, { passive: false })
     text.value.push('start')
   }
   const handleTouchMove = (event) => {
@@ -32,7 +30,6 @@ function useCarousel() {
       currentIndex.value--
     }
     console.log(text.value)
-    window.removeEventListener('wheel', handleWheel)
   }
 
   return {

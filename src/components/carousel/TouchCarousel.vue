@@ -4,15 +4,14 @@
       class="wrap"
       ref="carouselRef"
       :style="{ '--translateX': translateX + 'px' }"
-      @touchstart="handleTouchStart"
-      @touchmove="handleTouchMove"
-      @touchend="handleTouchEnd"
     >
       <div
         class="wrap-item"
         v-for="{ path, name } in images"
         :key="name"
-        @click="() => {}"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
       >
         <img :src="path" :alt="name" />
       </div>
@@ -82,6 +81,10 @@ const translateX = computed(() => {
   }
   return -carouselRef.value.clientWidth * currentIndex.value
 })
+
+const handleChildrenTouch = () => {
+  text.value.push('child touch start')
+}
 </script>
 
 <style scoped lang="scss">
