@@ -26,10 +26,16 @@
     <testSetUp ref="setup" />
     <testScruptSetUp ref="setupScript" />
     <TestFullScreen />
+    <div style="height: 200vh; display: flex">
+      <AtomicLink :to="{ name: 'snake' }" class="mt-auto"
+        >test me~~~</AtomicLink
+      >
+    </div>
   </div>
 </template>
 
 <script setup>
+import AtomicLink from './Atomic/AtomicLink.vue'
 import RotateHoverButton from './buttons/RotateHoverButtons.vue'
 import SwipeButton from './buttons/SwipeButton.vue'
 import SpreadHoverButton from './buttons/SpreadHoverButton.vue'
