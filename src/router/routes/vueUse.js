@@ -1,11 +1,11 @@
-const carousel = [
+const vueUse = [
   {
     path: '/vue-use',
-    name: 'carousel',
+    name: 'vue-use',
     children: [
       {
         path: '',
-        name: 'carousel',
+        name: 'vue-use',
         component: () => import('@/pages/vue-use/index.vue'),
       },
       {
@@ -21,4 +21,4 @@ const carousel = [
     ],
   },
 ]
-export default carousel
+export default vueUse

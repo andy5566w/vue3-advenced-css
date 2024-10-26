@@ -5,7 +5,7 @@ const carousel = [
     children: [
       {
         path: '',
-        name: 'carousel',
+        name: '4DCarousel',
         component: () => import('@/pages/carousel/4DCarousel.vue'),
       },
       {
@@ -17,6 +17,11 @@ const carousel = [
         path: 'touch-carousel',
         name: 'touch-carousel',
         component: () => import('@/pages/carousel/TouchCarousel.vue'),
+      },
+      {
+        path: 'append-carousel',
+        name: 'append-carousel',
+        component: () => import('@/pages/carousel/AppendCarousel.vue'),
       },
     ],
   },
