@@ -6,6 +6,9 @@ import Inspect from 'vite-plugin-inspect'
 export default defineConfig({
   plugins: [Inspect(), vue()],
   assetsInclude: ['**/*.vtt'],
+  test: {
+    environment: 'jsdom',
+  },
   resolve: {
     alias: {
       '@': '/src',
