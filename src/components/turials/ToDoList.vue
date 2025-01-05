@@ -6,6 +6,7 @@
         type="text"
         placeholder="Write something.."
         class="inputBox"
+        v-model="inputValue"
         @keyup="handleKeyUp"
       />
       <ul class="list">
@@ -20,6 +21,11 @@
 <script setup>
 import { ref } from 'vue'
 const listEle = ref([])
+const inputValue = ref('')
+const props = defineProps({
+  defaultInputValue: String,
+})
+inputValue.value = props.defaultInputValue
 const handleKeyUp = (event) => {
   if (event.key === 'Enter') {
     const input = event.target.value
@@ -59,12 +65,12 @@ const addItem = (input) => {
   height: 550px;
 
   h2 {
+    margin-bottom: 15px;
     width: 100%;
     color: white;
     font-weight: 600;
     font-size: 1.75rem;
     text-align: center;
-    margin-bottom: 15px;
   }
 
   .inputBox {
