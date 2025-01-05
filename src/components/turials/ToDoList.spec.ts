@@ -33,8 +33,10 @@ describe('test ToDoList render', () => {
     // add params { key: Enter } for event
     await inputEle.trigger('keyup', { key: 'Enter' })
 
-    console.log(inputEle.html())
     expect(wrapper.find('li').exists()).toBe(true)
     expect(wrapper.find('li').text()).toBe(vitestText)
+
+    // check event is existing
+    expect(wrapper.emitted()).toHaveProperty('keyup')
   })
 })
