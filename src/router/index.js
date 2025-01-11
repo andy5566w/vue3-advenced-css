@@ -6,6 +6,7 @@ import carousel from './routes/carousel.js'
 import youtubePlayer from './routes/youtubePlayer.js'
 import progress from './routes/progress.js'
 import vueUse from './routes/vueUse.js'
+import preference from './routes/performance.js'
 
 const routes = [
   ...duyi,
@@ -15,6 +16,7 @@ const routes = [
   ...youtubePlayer,
   ...progress,
   ...vueUse,
+  ...preference,
   {
     path: '/',
     redirect: () => ({
