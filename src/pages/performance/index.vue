@@ -33,23 +33,37 @@ const handleAddDomWithPerformance = (number = 1000) => {
       ulRef.value.appendChild(liEle)
     })
   }
-  performanceTasks(tasks)
+
+  const scheduleWithSetTimeout = (executeTask) => {
+    setTimeout(() => {
+      const now = performance.now()
+      executeTask(() => performance.now() - now < 1)
+    }, 1000)
+  }
+
+  const scheduleWithIdle = (executeTask) => {
+    requestIdleCallback((idle) => {
+      executeTask(() => idle.timeRemaining() > 0)
+    })
+  }
+  performanceTasks(tasks, scheduleWithSetTimeout)
   console.timeEnd('handleAddDom')
 }
 
-const performanceTasks = (tasks = []) => {
+const performanceTasks = (tasks = [], scheduler) => {
   if (tasks.length === 0) {
     return
   }
 
   let index = 0
   function _run() {
-    requestIdleCallback((idle) => {
-      while (++index < tasks.length && idle.timeRemaining() > 0) {
+    const executeTask = (idle) => {
+      while (tasks.length > index && idle()) {
         tasks[index++]()
       }
       _run()
-    })
+    }
+    scheduler(executeTask)
   }
   _run()
 }
