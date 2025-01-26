@@ -1,6 +1,12 @@
 import { ref, computed, reactive, nextTick } from 'vue'
 import droidData from './droids.js'
 
+import {
+  addPart,
+  filterAndSortParts,
+  calculateMissingParts,
+} from './addPartUtil.js'
+
 const getRandomTime = (multiplier = 10000) => Math.random() * multiplier + 1000
 
 // Define shared global state
@@ -31,54 +37,28 @@ const initialParts = allParts.filter((part) => {
     return droid.partsNeeded.includes(part.name)
   })
 })
-const parts = reactive(initialParts)
+const parts = ref(initialParts)
 
 export const useParts = () => {
   const partSearchTerm = ref('')
 
   // Randomly add parts
   async function addRandomPart() {
-    const randomIndex = Math.floor(Math.random() * allParts.length)
-    const randomPart = allParts[randomIndex]
-    const matchingPart = parts.find((p) => p.name === randomPart.name)
-    let updated
-    if (matchingPart) {
-      matchingPart.quantity++
-      updated = matchingPart
-    } else {
-      parts.push(randomPart)
-      updated = randomPart
-    }
-
-    if (updated) {
-      // Trigger animation
-      updated.added = true
-      setTimeout(() => {
-        updated.added = false
-      }, 1000)
-    }
+    addPart(parts.value, allParts)
+    setTimeout(() => {
+      parts.value.forEach((part) => (part.added = false))
+    }, 1000)
 
     setTimeout(addRandomPart, getRandomTime())
   }
   setTimeout(addRandomPart, getRandomTime())
 
   const filteredAndSortedParts = computed(() => {
-    return parts.filter((part) => {
-      return part.name
-        .toLowerCase()
-        .includes(partSearchTerm.value.toLowerCase())
-    })
+    return filterAndSortParts(parts.value, partSearchTerm.value)
   })
 
   const missingParts = computed(() => {
-    if (!selectedDroid.value || repairInProgress.value) {
-      return []
-    }
-
-    return selectedDroid.value.partsNeeded.filter((part) => {
-      const matchingPart = parts.find((p) => p.name === part)
-      return !matchingPart || matchingPart.quantity === 0
-    })
+    return calculateMissingParts(selectedDroid.value, parts.value)
   })
 
   return {
